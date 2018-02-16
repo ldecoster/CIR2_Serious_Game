@@ -1,0 +1,10 @@
+button_mission_notifications : 	pos 795 / 608
+				size 36 / 35
+button_mission : pos 579 / 620
+		 size 240 / 61
+button_statistiques : pos 10 / 654
+		      size 329 / 79
+button_skills : pos 1006 / 653
+		size 329 / 79
+button_background : pos 28 / 653
+		    size 1288 / 80
