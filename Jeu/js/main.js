@@ -51,9 +51,25 @@
 
 		// À rajouter après les autres boutons pour être par-dessus
 		var buMiNo = game.add.sprite(795, 608, 'buMiNo');
+
+		var timer = new TimerController(game, 500);
+		var barParam = {
+			name: 'pollution',
+			speedDecrease: 100,
+			coordX: 360,
+			coordY: 690,
+			PVMax: 100,
+			PV: 95,
+			barWidth: 646,
+			barHeight: 30
+		};
+		var bar = new BarController(game, barParam);
+		bar.printPercentage();
 	}
 
 	function upload() {
+		timer.updateClock();
+		bar.removePV(5);
 	}
 	
 })();
