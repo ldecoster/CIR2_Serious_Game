@@ -39,7 +39,7 @@ var BarController = (function () {
     Bar.prototype.drawBackground = function () {
         //Crée un rectangle bitmap gris qui formera le fond de la barre de vie
         var bar_backg = this.game.add.bitmapData(this.width, this.height);
-        bar_backg.context.fillStyle = "#808580";
+        bar_backg.context.fillStyle = "#bbc1bb";
         bar_backg.context.fillRect(0, 0, this.width, this.height);
         this.backgSprite = this.game.add.sprite(this.x, this.y, bar_backg);
     };
@@ -65,22 +65,22 @@ var BarController = (function () {
     /*Modifie l'image bitmap*/
 
     Bar.prototype.changeGradient = function (grad) {
-        if (this.PV >= this.pvmax / 2) {
-            //Vert si plus de la moitié des PV restants
-            grad.addColorStop(0, '#3f9645');
-            grad.addColorStop(0.5, '#127017');
-            grad.addColorStop(1, '#3f9645');
+        if (this.PV >= this.pvmax * 2 / 3) {
+            // Marron si plus de deux tiers des PV restants
+            grad.addColorStop(0, '#96492a');
+            grad.addColorStop(0.5, '#4c1b07');
+            grad.addColorStop(1, '#96492a');
         } else {
-            if (this.PV < this.pvmax / 4) {
-                //Rouge si moins du quart des PV restants
-                grad.addColorStop(0, '#ff5454');
-                grad.addColorStop(0.5, '#ff0000');
-                grad.addColorStop(1, '#ff5454');
+            if (this.PV < this.pvmax / 3) {
+                // Vert si moins d'un tiers
+                grad.addColorStop(0, '#41cc4a');
+                grad.addColorStop(0.5, '#15841c');
+                grad.addColorStop(1, '#41cc4a');
             } else {
-                //Orange sinon
-                grad.addColorStop(0, '#ff9b59');
-                grad.addColorStop(0.5, '#ff6600');
-                grad.addColorStop(1, '#ff9b59');
+                // Gris sinon
+                grad.addColorStop(0, '#70635e');
+                grad.addColorStop(0.5, '#594e4a');
+                grad.addColorStop(1, '#70635e');
             }
         }
         return grad;
@@ -135,7 +135,7 @@ var BarController = (function () {
         //Initialise les données texte de la jauge
         this.textPercentage = this.game.add.text(this.x + this.width / 2, this.y + this.height / 2, '');
         this.textPercentage.anchor.setTo(0.5, 0.6);
-        this.textPercentage.fill = "white";
+        this.textPercentage.fill = "black";
         this.textPercentage.fontSize = this.height * 2 / 3;
         this.textPercentage.visible = false;
 
