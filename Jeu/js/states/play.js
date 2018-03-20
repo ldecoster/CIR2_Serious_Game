@@ -1,5 +1,5 @@
-define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'],
-	function (Phaser, Bar, Timer, color) {
+define(['phaser', 'jquery', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'],
+	function (Phaser, $, Bar, Timer, color) {
 		var play = function () {
 			MAP = 'frZo';
 			MAP_PATH = 'assets/img/france_zone';
@@ -8,9 +8,6 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 
 		play.prototype = {
 			preload: function () {
-				this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-				this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-
 				// Images de la carte
 				for(let i = 1; i <= 6; i++) {
 					this.game.load.image(MAP+i, MAP_PATH+i+'.png');
@@ -28,8 +25,20 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 			},
 
 			create: function () {
-				//this.game.state.start('Win');
+				$.ajax({
+					url: "assets/json/config.json",
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					success: function (data) {
+						//this.objJSON = data;
+						console.log(data);
+					},
+					error: function () {
+						console.error("Failed JSON loading.");
+					}
+				});
 				
+				//this.game.state.start('Win');
 				this.game.stage.backgroundColor = '#141414';
 				this.mapContainer = [];
 				for(let i = 1; i <= 6; i++) {
