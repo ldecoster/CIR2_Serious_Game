@@ -1,5 +1,20 @@
 {
-	"test": {
-		"a": [5, 6]
-	}
+	"frZo1": 0.4,
+	"frZo1P": 0.6,
+	"frZo1S": 0,
+	"frZo2": 0.4,
+	"frZo2P": 0.6,
+	"frZo2S": 0,
+	"frZo3": 0.4,
+	"frZo3P": 0.6,
+	"frZo3S": 0,
+	"frZo4": 0.4,
+	"frZo4P": 0.6,
+	"frZo4S": 0,
+	"frZo5": 0.4,
+	"frZo5P": 0.6,
+	"frZo5S": 0,
+	"frZo6": 0.4,
+	"frZo6P": 0.6,
+	"frZo6S": 0
 }

@@ -1,5 +1,5 @@
-define(['phaser', 'jquery', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'],
-	function (Phaser, $, Bar, Timer, color) {
+define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js', 'text!assets/json/config.json'],
+	function (Phaser, Bar, Timer, color, config) {
 		var play = function () {
 			MAP = 'frZo';
 			MAP_PATH = 'assets/img/france_zone';
@@ -25,27 +25,17 @@ define(['phaser', 'jquery', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models
 			},
 
 			create: function () {
-				$.ajax({
-					url: "assets/json/config.json",
-					contentType: 'application/json; charset=utf-8',
-					dataType: 'json',
-					success: function (data) {
-						//this.objJSON = data;
-						console.log(data);
-					},
-					error: function () {
-						console.error("Failed JSON loading.");
-					}
-				});
+				// On récupère les informations depuis le JSON
+				this.objJSON = JSON.parse(config);
 				
 				//this.game.state.start('Win');
 				this.game.stage.backgroundColor = '#141414';
 				this.mapContainer = [];
-				for(let i = 1; i <= 6; i++) {
-					this.mapContainer['frZo'+i] = this.game.add.image(0, 0, 'frZo'+i);
-					this.mapContainer['frZo'+i+'P'] = this.game.add.image(0, 0, 'frZo'+i+'P');
-					this.mapContainer['frZo'+i+'S'] = this.game.add.image(0, 0, 'frZo'+i+'S');
+				for(let part in this.objJSON) {
+					this.mapContainer[part] = this.game.add.image(0, 0, part);
+					this.mapContainer[part].alpha = this.objJSON[part];
 				}
+
 				this.buttonBackground = this.game.add.image(28, 653, 'buttonBackground');
 				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions');
 				this.buttonNotification = this.game.add.image(795, 608, 'buttonNotification');
