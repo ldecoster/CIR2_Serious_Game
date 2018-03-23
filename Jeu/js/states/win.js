@@ -10,7 +10,7 @@ define([],
 			},
 
 			create: function() {
-
+				console.log('Gagné !!!');
 			},
 
 			update: function() {

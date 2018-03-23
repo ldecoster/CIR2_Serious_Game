@@ -1,18 +1,17 @@
 define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js', 'text!assets/json/config.json'],
 	function (Phaser, Bar, Timer, color, config) {
 		var play = function () {
-			MAP = 'frZo';
-			MAP_PATH = 'assets/img/france_zone';
-			REMAINING_TIME = 300;
+			// On récupère les informations depuis le JSON
+			this.gameObject = JSON.parse(config);
 		};
 
 		play.prototype = {
 			preload: function () {
 				// Images de la carte
 				for(let i = 1; i <= 6; i++) {
-					this.game.load.image(MAP+i, MAP_PATH+i+'.png');
-					this.game.load.image(MAP+i+'P', MAP_PATH+i+'_pollute.png');
-					this.game.load.image(MAP+i+'S', MAP_PATH+i+'_safe.png');
+					this.game.load.image(this.gameObject.mapName+i, this.gameObject.mapNamePath+i+'.png');
+					this.game.load.image(this.gameObject.mapName+i+'P', this.gameObject.mapNamePath+i+'_pollute.png');
+					this.game.load.image(this.gameObject.mapName+i+'S', this.gameObject.mapNamePath+i+'_safe.png');
 				}
 				// Images de la barre de notifications et indication de notifications
 				this.game.load.image('buttonBackground', 'assets/img/button_background.png');
@@ -24,16 +23,14 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 				this.game.load.spritesheet('buttonStats', 'assets/img/button_stats.png');
 			},
 
-			create: function () {
-				// On récupère les informations depuis le JSON
-				this.objJSON = JSON.parse(config);
-				
-				//this.game.state.start('Win');
-				this.game.stage.backgroundColor = '#141414';
+			create: function () {				
+				this.game.stage.backgroundColor = this.gameObject.backgroundColor;
+
 				this.mapContainer = [];
-				for(let part in this.objJSON) {
-					this.mapContainer[part] = this.game.add.image(0, 0, part);
-					this.mapContainer[part].alpha = this.objJSON[part];
+				// On ajout les 3 versions de chaque subdivision de la carte et on initialise leur .alpha
+				for(let mapPartObject of this.gameObject.mapParts) {
+					this.mapContainer[mapPartObject.name] = this.game.add.image(0, 0, mapPartObject.name);
+					this.mapContainer[mapPartObject.name].alpha = mapPartObject.alpha;
 				}
 
 				this.buttonBackground = this.game.add.image(28, 653, 'buttonBackground');
@@ -58,24 +55,28 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 					colorswap(this.mapContainer.frZo6, this.mapContainer.frZo6P, this.mapContainer.frZo6S, false);
 				}, this);
 
-				this.timer = new TimerController(this.game, REMAINING_TIME);
-				this.barParam = {
-					name: 'pollution',
-					speedDecrease: 100,
-					coordX: 360,
-					coordY: 690,
-					PVMax: 100,
-					PV: 95,
-					barWidth: 626,
-					barHeight: 30
-				};
-				this.bar = new BarController(this.game, this.barParam);
-				this.bar.printPercentage();
+				// Création du chronomètre
+				this.timer = new TimerController(this.game, this.gameObject.remainingTime);
+				
+				// Création de la barre de pollution
+				this.pollutionBar = new BarController(this.game, this.gameObject.barParam);
+				this.pollutionBar.printPercentage();
+
 			},
 
 			update: function () {
-				if(this.bar.PV > 0.0) {
-					this.bar.removePV(0.2);
+				if(this.pollutionBar.PV < this.pollutionBar.pvmax) {
+					//this.pollutionBar.addPV(1);
+				}
+				if(this.pollutionBar.PV > 0) {
+					this.pollutionBar.removePV(1);
+				}
+
+
+
+				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
+				if(this.pollutionBar.PV === 0) {
+					this.game.state.start('Win');
 				}
 			}
 		};
