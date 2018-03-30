@@ -1,5 +1,5 @@
-define([],
-	function() {
+define(['text!assets/json/config.json'],
+	function(configFromFile) {
 		var menu = function() {
 
 		};
@@ -10,7 +10,7 @@ define([],
 			},
 
 			create: function() {
-				this.game.state.start('Play');
+				this.game.state.start('Play', true, false, configFromFile);
 			},
 
 			update: function() {

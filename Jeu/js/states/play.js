@@ -1,11 +1,14 @@
-define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js', 'text!assets/json/config.json'],
-	function (Phaser, Bar, Timer, color, config) {
+define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'],
+	function (Phaser, Bar, Timer, color) {
 		var play = function () {
-			// On récupère les informations depuis le JSON
-			this.gameObject = JSON.parse(config);
 		};
 
 		play.prototype = {
+			init: function (configFromStates) {
+				// On récupère les informations depuis le JSON
+				this.gameObject = JSON.parse(configFromStates);
+			},
+
 			preload: function () {
 				// Images de la carte
 				for(let i = 1; i <= 6; i++) {
@@ -23,10 +26,11 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 				this.game.load.spritesheet('buttonStats', 'assets/img/button_stats.png');
 			},
 
-			create: function () {				
+			create: function () {	
 				this.game.stage.backgroundColor = this.gameObject.backgroundColor;
 
 				this.mapContainer = [];
+
 				// On ajout les 3 versions de chaque subdivision de la carte et on initialise leur .alpha
 				for(let mapPartObject of this.gameObject.mapParts) {
 					this.mapContainer[mapPartObject.name] = this.game.add.image(0, 0, mapPartObject.name);
@@ -61,10 +65,10 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 				// Création de la barre de pollution
 				this.pollutionBar = new BarController(this.game, this.gameObject.barParam);
 				this.pollutionBar.printPercentage();
-
 			},
 
 			update: function () {
+
 				if(this.pollutionBar.PV < this.pollutionBar.pvmax) {
 					//this.pollutionBar.addPV(1);
 				}
@@ -76,7 +80,8 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 
 				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
 				if(this.pollutionBar.PV === 0) {
-					this.game.state.start('Win');
+					//this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject));
+					//this.game.state.start('Win');
 				}
 			}
 		};
