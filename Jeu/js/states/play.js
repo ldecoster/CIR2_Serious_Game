@@ -1,16 +1,12 @@
-define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js', 'text!assets/json/config.json'],
-	function (Phaser, Bar, Timer, color, configFromFile) {
+define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'],
+	function (Phaser, Bar, Timer, color) {
 		var play = function () {
 		};
 
 		play.prototype = {
 			init: function (configFromStates) {
 				// On récupère les informations depuis le JSON
-				if(configFromStates) {
-					this.gameObject = JSON.parse(configFromStates);
-				} else {
-					this.gameObject = JSON.parse(configFromFile);
-				}
+				this.gameObject = JSON.parse(configFromStates);
 			},
 
 			preload: function () {
@@ -84,7 +80,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 
 				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
 				if(this.pollutionBar.PV === 0) {
-					this.game.state.start('Play2', true, false, JSON.stringify(this.gameObject));
+					//this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject));
 					//this.game.state.start('Win');
 				}
 			}
