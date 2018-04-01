@@ -1,15 +1,16 @@
-define([],
-	function () {
+define(['js/models/System.js'],
+	function (System) {
 		var boot = function () {
 		};
 
 		boot.prototype = {
 			preload: function () {
-				this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-				this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
 			},
 
 			create: function () {
+				this.system = new System(this.game);
+				this.system.createFullScreen();
 				this.game.state.start('Load');
 			}
 		};

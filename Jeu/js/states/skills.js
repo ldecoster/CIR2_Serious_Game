@@ -1,5 +1,5 @@
-define(['phaser'],
-	function (Phaser) {
+define(['phaser', 'js/models/System.js'],
+	function (Phaser, System) {
 		var skills = function () {
 			
 		};
@@ -15,7 +15,8 @@ define(['phaser'],
 			},
 
 			create: function () {				
-				
+				this.system = new System(this.game);
+				this.system.createFullScreen();
 
 			},
 

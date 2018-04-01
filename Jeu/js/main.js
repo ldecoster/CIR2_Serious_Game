@@ -20,5 +20,5 @@ require.config({
 
 require(['js/controllers/game'],
 	function (Game) {
-		var game = new Game();
+		var game = new Game('game');
 	});

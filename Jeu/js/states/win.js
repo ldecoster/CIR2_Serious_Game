@@ -1,5 +1,5 @@
-define([],
-	function() {
+define(['js/models/System.js'],
+	function(System) {
 		var win = function() {
 
 		};
@@ -10,6 +10,8 @@ define([],
 			},
 
 			create: function() {
+				this.system = new System(this.game);
+				this.system.createFullScreen();
 				console.log('Gagné !!!');
 			},
 

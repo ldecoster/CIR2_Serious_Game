@@ -1,5 +1,5 @@
-define(['text!assets/json/config.json'],
-	function(configFromFile) {
+define(['js/models/System.js', 'text!assets/json/config.json'],
+	function(System, configFromFile) {
 		var menu = function() {
 
 		};
@@ -10,6 +10,8 @@ define(['text!assets/json/config.json'],
 			},
 
 			create: function() {
+				this.system = new System(this.game);
+				this.system.createFullScreen();
 				this.game.state.start('Play', true, false, configFromFile);
 			},
 

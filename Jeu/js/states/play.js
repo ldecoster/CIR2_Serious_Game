@@ -1,5 +1,5 @@
-define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'],
-	function (Phaser, Bar, Timer, color) {
+define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js'],
+	function (Phaser, Bar, System, color) {
 		var play = function () {
 		};
 
@@ -60,7 +60,9 @@ define(['phaser', 'js/models/Bar.js', 'js/models/Timer.js', 'js/models/color.js'
 				}, this);
 
 				// Création du chronomètre
-				this.timer = new TimerController(this.game, this.gameObject.remainingTime);
+				this.system = new System(this.game);
+				this.system.createFullScreen();
+				this.gameObject.timer = this.system.createTimer(this.gameObject.remainingTime);
 				
 				// Création de la barre de pollution
 				this.pollutionBar = new BarController(this.game, this.gameObject.barParam);
