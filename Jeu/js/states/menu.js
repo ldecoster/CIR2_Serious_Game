@@ -6,8 +6,8 @@ define(['js/models/System.js', 'text!assets/json/config.json'],
 
 		menu.prototype = {
 			preload: function() {
-				this.game.load.image('background','assets/img/menu_background.png');
-				this.game.load.spritesheet('button', 'assets/img/button_play.png');
+				this.game.load.image('background','assets/img/interface/menu_background.png');
+				this.game.load.spritesheet('button', 'assets/img/interface/button_play.png');
 			},
 
 			create: function() {

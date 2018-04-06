@@ -2,7 +2,7 @@
 	"backgroundColor": "#141414",
 	"remainingTime": 300,
 	"mapName": "frZo",
-	"mapNamePath": "assets/img/france_zone",
+	"mapNamePath": "assets/img/interface/france_zone",
 
 	"mapParts": [
 		{

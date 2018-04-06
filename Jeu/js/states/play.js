@@ -17,13 +17,13 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					this.game.load.image(this.gameObject.mapName+i+'S', this.gameObject.mapNamePath+i+'_safe.png');
 				}
 				// Images de la barre de notifications et indication de notifications
-				this.game.load.image('buttonBackground', 'assets/img/button_background.png');
-				this.game.load.image('buttonNotification', 'assets/img/button_mission_notification.png');
+				this.game.load.image('buttonBackground', 'assets/img/interface/button_background.png');
+				this.game.load.image('buttonNotification', 'assets/img/interface/button_mission_notification.png');
 
 				// Images des boutons cliquables
-				this.game.load.spritesheet('buttonMissions', 'assets/img/button_mission.png');
-				this.game.load.spritesheet('buttonSkills', 'assets/img/button_skills.png');
-				this.game.load.spritesheet('buttonStats', 'assets/img/button_stats.png');
+				this.game.load.spritesheet('buttonMissions', 'assets/img/interface/button_mission.png');
+				this.game.load.spritesheet('buttonSkills', 'assets/img/interface/button_skills.png');
+				this.game.load.spritesheet('buttonStats', 'assets/img/interface/button_stats.png');
 			},
 
 			create: function () {	
@@ -87,7 +87,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
 				if(this.pollutionBar.PV === 0) {
 					//this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject));
-					//this.game.state.start('Win');
+					this.game.state.start('Win');
 				}
 			}
 		};

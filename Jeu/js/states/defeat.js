@@ -6,9 +6,9 @@ define(['js/models/System.js'],
 
 		defeat.prototype = {
 			preload: function() {
-				this.game.load.image('background','assets/img/defeat_background.png');
-				this.game.load.spritesheet('button_menu', 'assets/img/button_end_menu.png');
-				this.game.load.spritesheet('button_replay', 'assets/img/button_end_replay.png');
+				this.game.load.image('background','assets/img/interface/defeat_background.png');
+				this.game.load.spritesheet('button_menu', 'assets/img/interface/button_end_menu.png');
+				this.game.load.spritesheet('button_replay', 'assets/img/interface/button_end_replay.png');
 			},
 
 			create: function() {
