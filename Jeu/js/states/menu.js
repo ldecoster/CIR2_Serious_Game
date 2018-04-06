@@ -7,7 +7,7 @@ define(['js/models/System.js', 'text!assets/json/config.json'],
 		menu.prototype = {
 			preload: function() {
 				this.game.load.image('background','assets/img/menu_background.png');
-				this.game.load.spritesheet('button', 'assets/img/button_play.png', 725, 325);
+				this.game.load.spritesheet('button', 'assets/img/button_play.png');
 			},
 
 			create: function() {
@@ -19,7 +19,7 @@ define(['js/models/System.js', 'text!assets/json/config.json'],
 				};
 
 			    var background = this.game.add.tileSprite(0, 0, 1350, 750, 'background');
-			    var button = this.game.add.button(this.game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
+			    var button = this.game.add.button(this.game.world.centerX - 95, 400, 'button', actionOnClick, this);
 			},
 
 			update: function() {

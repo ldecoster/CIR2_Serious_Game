@@ -1,12 +1,12 @@
 define(['js/models/System.js'],
 	function(System) {
-		var win = function() {
+		var defeat = function() {
 
 		};
 
-		win.prototype = {
+		defeat.prototype = {
 			preload: function() {
-				this.game.load.image('background','assets/img/victory_background.png');
+				this.game.load.image('background','assets/img/defeat_background.png');
 				this.game.load.spritesheet('button_menu', 'assets/img/button_end_menu.png');
 				this.game.load.spritesheet('button_replay', 'assets/img/button_end_replay.png');
 			},
@@ -33,5 +33,5 @@ define(['js/models/System.js'],
 			}
 		};
 
-		return win;
+		return defeat;
 	});

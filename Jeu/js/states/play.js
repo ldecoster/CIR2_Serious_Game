@@ -38,9 +38,13 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				}
 
 				this.buttonBackground = this.game.add.image(28, 653, 'buttonBackground');
-				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions');
 				this.buttonNotification = this.game.add.image(795, 608, 'buttonNotification');
 				this.buttonNotification.alpha = 0;
+
+				// Fonction à changer après
+				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {
+					this.game.state.start('Defeat');
+				});
 
 				this.buttonSkills = this.game.add.button(1006, 653, 'buttonSkills', function() {
 					colorswap(this.mapContainer.frZo1, this.mapContainer.frZo1P, this.mapContainer.frZo1S, true);
