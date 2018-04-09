@@ -41,19 +41,15 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.buttonNotification = this.game.add.image(795, 608, 'buttonNotification');
 				this.buttonNotification.alpha = 0;
 
+				this.buttonSkills = this.game.add.button(1006, 653, 'buttonSkills', function() {
+					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject));
+				}, this);
+
 				// Fonction à changer après
 				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {
 					this.game.state.start('Defeat');
 				});
 
-				this.buttonSkills = this.game.add.button(1006, 653, 'buttonSkills', function() {
-					colorswap(this.mapContainer.frZo1, this.mapContainer.frZo1P, this.mapContainer.frZo1S, true);
-					colorswap(this.mapContainer.frZo2, this.mapContainer.frZo2P, this.mapContainer.frZo2S, true);
-					colorswap(this.mapContainer.frZo3, this.mapContainer.frZo3P, this.mapContainer.frZo3S, true);
-					colorswap(this.mapContainer.frZo4, this.mapContainer.frZo4P, this.mapContainer.frZo4S, true);
-					colorswap(this.mapContainer.frZo5, this.mapContainer.frZo5P, this.mapContainer.frZo5S, true);
-					colorswap(this.mapContainer.frZo6, this.mapContainer.frZo6P, this.mapContainer.frZo6S, true);
-				}, this);
 				this.buttonStats = this.game.add.button(10, 653, 'buttonStats', function() {
 					colorswap(this.mapContainer.frZo1, this.mapContainer.frZo1P, this.mapContainer.frZo1S, false);
 					colorswap(this.mapContainer.frZo2, this.mapContainer.frZo2P, this.mapContainer.frZo2S, false);
@@ -86,7 +82,6 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
 				if(this.pollutionBar.PV === 0) {
-					//this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject));
 					this.game.state.start('Win');
 				}
 			}
