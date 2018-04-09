@@ -1,5 +1,5 @@
-define(['js/models/System.js'],
-	function(System) {
+define(['js/models/System.js', 'text!assets/json/config.json'],
+	function(System, configFromFile) {
 		var win = function() {
 
 		};
