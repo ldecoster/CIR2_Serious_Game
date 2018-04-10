@@ -18,9 +18,9 @@ define(['phaser', 'js/models/System.js', 'text!assets/json/skills.json'],
 				this.game.load.image('background', 'assets/img/skills_tree/Background.png');
 
 				// Ajout des compétences débloquables
-				this.game.load.spritesheet('transEnergComp', 'assets/img/skills_tree/bullet_transition_energetique.png');
-				this.game.load.spritesheet('campInflComp', 'assets/img/skills_tree/bullet_campagne_influence.png');
-				this.game.load.spritesheet('energPolComp', 'assets/img/skills_tree/bullet_energie_polluante.png');
+				this.game.load.spritesheet('greenBullet', 'assets/img/skills_tree/bullet_transition_energetique.png');
+				this.game.load.spritesheet('orangeBullet', 'assets/img/skills_tree/bullet_campagne_influence.png');
+				this.game.load.spritesheet('redBullet', 'assets/img/skills_tree/bullet_energie_polluante.png');
 			},
 
 			create: function () {				
@@ -34,17 +34,37 @@ define(['phaser', 'js/models/System.js', 'text!assets/json/skills.json'],
 				var campInfl = this.game.add.sprite(536, 220, 'campInfl');
 				var energPol = this.game.add.sprite(530, 317, 'energPol');
 
-				this.skillsContainer = [];
+				this.skillsContainer = {};
 
-				for(let transEnergChildren of this.skillsObject.transEnerg) {
-					this.skillsContainer.push(this.game.add.button(transEnergChildren.x, transEnergChildren.y, 'transEnergComp'));
-				}
-				for(let campInflChildren of this.skillsObject.campInfl) {
-					this.skillsContainer.push(this.game.add.button(campInflChildren.x, campInflChildren.y, 'campInflComp'));
-				}
-				for(let energPolChildren of this.skillsObject.energPol) {
-					this.skillsContainer.push(this.game.add.button(energPolChildren.x, energPolChildren.y, 'energPolComp'));
-				}
+				// Fonction de découverte des sous-compétences
+				var discovery = function(element) {
+					// Si l'élément a des enfants, on change la valeur de la propriété alpha à 1 et on actualise
+					if(element.hasOwnProperty('children')) {
+						for(let child of element.children) {
+							child.alpha = 1;
+						}
+						readJSON(this.skillsObject);
+					}
+				};
+
+				// Parcours récursif du JSON
+				var readJSON = function(object) {
+					for(let child of object) {
+						if(child.hasOwnProperty('category')) {
+							this.skillsContainer[child.name] = this.game.add.button(child.x, child.y, child.category);
+							this.skillsContainer[child.name].alpha = child.alpha;
+						}
+						
+						if(child.hasOwnProperty('children')) {
+							if(child.hasOwnProperty('category')) {
+								this.skillsContainer[child.name].events.onInputDown.add(discovery.bind(this, child));
+							}
+							readJSON(child.children);
+						}
+					}
+				}.bind(this);
+
+				readJSON(this.skillsObject);
 			},
 
 			update: function () {
