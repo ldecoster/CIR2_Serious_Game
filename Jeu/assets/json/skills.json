@@ -1,12 +1,18 @@
 [
 	{
 		"name": "transEnerg",
+		"cout": 10,
+        "debloque" : 1,
+        "valeur" : 1,
 		"children": [
 			{
 				"name": "hydraulique",
 				"alpha": 1,
 				"x": 720,
 				"y": 160,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.2,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -14,6 +20,9 @@
 						"alpha": 0,
 						"x": 660,
 						"y": 80,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 1,
 						"category": "greenBullet"
 					},
 					{
@@ -21,6 +30,9 @@
 						"alpha": 0,
 						"x": 740,
 						"y": 100,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 0.7,
 						"category": "greenBullet"
 					},
 					{
@@ -28,6 +40,9 @@
 						"alpha": 0,
 						"x": 810,
 						"y": 140,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 1,
 						"category": "greenBullet"
 					}
 				]
@@ -37,6 +52,9 @@
 				"alpha": 1,
 				"x": 820,
 				"y": 250,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.1,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -44,6 +62,9 @@
 						"alpha": 0,
 						"x": 870,
 						"y": 190,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 1,
 						"category": "greenBullet"
 					},
 					{
@@ -51,6 +72,9 @@
 						"alpha": 0,
 						"x": 900,
 						"y": 260,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 0.5,
 						"category": "greenBullet"
 					}
 				]
@@ -60,6 +84,9 @@
 				"alpha": 1,
 				"x": 840,
 				"y": 370,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.2,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -67,6 +94,9 @@
 						"alpha": 0,
 						"x": 910,
 						"y": 350,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 0.5,
 						"category": "greenBullet"
 					},
 					{
@@ -74,6 +104,9 @@
 						"alpha": 0,
 						"x": 890,
 						"y": 420,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 1,
 						"category": "greenBullet"
 					}
 				]
@@ -83,6 +116,9 @@
 				"alpha": 1,
 				"x": 780,
 				"y": 470,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.4,
 				"category": "greenBullet"
 			},
 			{
@@ -90,18 +126,27 @@
 				"alpha": 1,
 				"x": 690,
 				"y": 510,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.2,
 				"category": "greenBullet"
 			}
 		]
 	},
 	{
 		"name": "campInfl",
+		"cout": 10,
+        "debloque": 1,
+        "valeur" : 1,
 		"children": [
 			{
 				"name": "transport",
 				"alpha": 1,
 				"x": 520,
 				"y": 200,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.4,
 				"category": "orangeBullet",
 				"children": [
 					{
@@ -109,6 +154,9 @@
 						"alpha": 0,
 						"x": 500,
 						"y": 130,
+						"cout": 20,
+						"debloque": 0,
+						"valeur" : 3,
 						"category": "orangeBullet"
 					},
 					{
@@ -116,6 +164,9 @@
 						"alpha": 0,
 						"x": 440,
 						"y": 190,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 2,
 						"category": "orangeBullet"
 					}
 				]
@@ -125,18 +176,27 @@
 				"alpha": 1,
 				"x": 600,
 				"y": 160,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.3,
 				"category": "orangeBullet"
 			}
 		]
 	},
 	{
 		"name": "energPol",
+		"cout": 10,
+        "debloque": 1,
+        "valeur" : 1,
 		"children": [
 			{
 				"name": "nucleaire",
 				"alpha": 1,
 				"x": 530,
 				"y": 480,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.8,
 				"category": "redBullet",
 				"children": [
 					{
@@ -144,6 +204,9 @@
 						"alpha": 0,
 						"x": 420,
 						"y": 460,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 2,
 						"category": "redBullet"
 					},
 					{
@@ -151,6 +214,9 @@
 						"alpha": 0,
 						"x": 460,
 						"y": 510,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 1,
 						"category": "redBullet"
 					},
 					{
@@ -158,6 +224,9 @@
 						"alpha": 0,
 						"x": 530,
 						"y": 560,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 2.5,
 						"category": "redBullet"
 					},
 					{
@@ -165,6 +234,9 @@
 						"alpha": 0,
 						"x": 600,
 						"y": 580,
+						"cout": 20,
+                        "debloque": 0,
+                        "valeur" : 0.5,
 						"category": "redBullet"
 					}
 				]
@@ -174,6 +246,9 @@
 				"alpha": 1,
 				"x": 460,
 				"y": 340,
+				"cout": 15,
+                "debloque": 0,
+                "valeur" : 0.2,
 				"category": "redBullet"
 			}
 		]
