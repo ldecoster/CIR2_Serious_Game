@@ -35,6 +35,11 @@ define(['phaser'],
 			});
 
 			this._timer_text.fixedToCamera = true;
+			return this._timer;
+		};
+
+		System.prototype.getClock = function(){
+			return this._time;
 		};
 
 		System.prototype.updateClock = function () {

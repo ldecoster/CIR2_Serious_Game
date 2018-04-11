@@ -10,6 +10,8 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 			},
 
 			preload: function () {
+				this.game.stage.backgroundColor = this.gameObject.backgroundColor;
+
 				// Images de la carte
 				for(let i = 1; i <= 6; i++) {
 					this.game.load.image(this.gameObject.mapName+i, this.gameObject.mapNamePath+i+'.png');
@@ -27,7 +29,6 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 			},
 
 			create: function () {	
-				this.game.stage.backgroundColor = this.gameObject.backgroundColor;
 
 				this.mapContainer = [];
 
@@ -47,7 +48,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 				// Fonction à changer après
 				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {
-					this.game.state.start('Defeat');
+					
 				});
 
 				this.buttonStats = this.game.add.button(10, 653, 'buttonStats', function() {
@@ -62,7 +63,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				// Création du chronomètre
 				this.system = new System(this.game);
 				this.system.createFullScreen();
-				this.gameObject.timer = this.system.createTimer(this.gameObject.remainingTime);
+				this.system.createTimer(this.gameObject.remainingTime);
 				
 				// Création de la barre de pollution
 				this.pollutionBar = new BarController(this.game, this.gameObject.barParam);
@@ -71,18 +72,18 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 			update: function () {
 
-				if(this.pollutionBar.PV < this.pollutionBar.pvmax) {
-					//this.pollutionBar.addPV(1);
-				}
 				if(this.pollutionBar.PV > 0) {
 					this.pollutionBar.removePV(1);
 				}
 
-
+				// Si le temps est écoulé ou si le le taux de pollution atteint 100, on déclenche l'état de défaite
+				if((this.pollutionBar.PV === this.pollutionBar.pvmax) || (this.system.getClock() === 0)) {
+					this.game.state.start('Defeat');
+				}
 
 				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
 				if(this.pollutionBar.PV === 0) {
-					this.game.state.start('Win');
+					//this.game.state.start('Win');
 				}
 			}
 		};
