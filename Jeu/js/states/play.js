@@ -72,6 +72,5 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 			}
 		};
 
-
 		return play;
 	});

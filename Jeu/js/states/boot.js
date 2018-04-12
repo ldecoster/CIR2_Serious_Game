@@ -1,5 +1,5 @@
-define(['js/models/System.js'],
-	function (System) {
+define([],
+	function () {
 		var boot = function () {
 		};
 
