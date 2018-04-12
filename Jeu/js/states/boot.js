@@ -9,8 +9,6 @@ define(['js/models/System.js'],
 			},
 
 			create: function () {
-				this.system = new System(this.game);
-				this.system.createFullScreen();
 				this.game.state.start('Load');
 			}
 		};

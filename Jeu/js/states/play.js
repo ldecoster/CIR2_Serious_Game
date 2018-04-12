@@ -4,28 +4,11 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 		};
 
 		play.prototype = {
-			init: function (configFromStates) {
+			init: function (configFromStates, mapsFromStates, skillsFromStates) {
 				// On récupère les informations depuis le JSON
 				this.gameObject = JSON.parse(configFromStates);
-			},
-
-			preload: function () {
-				this.game.stage.backgroundColor = this.gameObject.backgroundColor;
-
-				// Images de la carte
-				for(let i = 1; i <= 6; i++) {
-					this.game.load.image(this.gameObject.mapName+i, this.gameObject.mapNamePath+i+'.png');
-					this.game.load.image(this.gameObject.mapName+i+'P', this.gameObject.mapNamePath+i+'_pollute.png');
-					this.game.load.image(this.gameObject.mapName+i+'S', this.gameObject.mapNamePath+i+'_safe.png');
-				}
-				// Images de la barre de notifications et indication de notifications
-				this.game.load.image('buttonBackground', 'assets/img/interface/button_background.png');
-				this.game.load.image('buttonNotification', 'assets/img/interface/button_mission_notification.png');
-
-				// Images des boutons cliquables
-				this.game.load.spritesheet('buttonMissions', 'assets/img/interface/button_mission.png');
-				this.game.load.spritesheet('buttonSkills', 'assets/img/interface/button_skills.png');
-				this.game.load.spritesheet('buttonStats', 'assets/img/interface/button_stats.png');
+				this.mapsObject = JSON.parse(mapsFromStates);
+				this.skillsObject = JSON.parse(skillsFromStates);
 			},
 
 			create: function () {	
@@ -33,7 +16,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.mapContainer = [];
 
 				// On ajout les 3 versions de chaque subdivision de la carte et on initialise leur .alpha
-				for(let mapPartObject of this.gameObject.mapParts) {
+				for(let mapPartObject of this.mapsObject) {
 					this.mapContainer[mapPartObject.name] = this.game.add.image(0, 0, mapPartObject.name);
 					this.mapContainer[mapPartObject.name].alpha = mapPartObject.alpha;
 				}
@@ -43,7 +26,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.buttonNotification.alpha = 0;
 
 				this.buttonSkills = this.game.add.button(1006, 653, 'buttonSkills', function() {
-					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject));
+					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				}, this);
 
 				// Fonction à changer après
@@ -71,6 +54,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 			},
 
 			update: function () {
+				this.gameObject.remainingTime = this.system.getClock();
 
 				if(this.pollutionBar.PV > 0) {
 					this.pollutionBar.removePV(1);
