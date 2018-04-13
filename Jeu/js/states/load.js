@@ -13,7 +13,7 @@ define([],
 				/* Ressources de l'écran de menu */
 
 				this.game.load.image('backgroundMenu','assets/img/interface/menu_background.png');
-				this.game.load.spritesheet('buttonPlay', 'assets/img/interface/button_play.png');
+				this.game.load.spritesheet('buttonPlay', 'assets/img/interface/button_play.png', 183, 90, 2);
 
 
 				/* Ressources de l'écran principal */
@@ -52,8 +52,8 @@ define([],
 				/* Ressources des écrans de fin */
 				this.game.load.image('backgroundDefeat','assets/img/interface/defeat_background.png');
 				this.game.load.image('backgroundWin','assets/img/interface/victory_background.png');
-				this.game.load.spritesheet('buttonMenu', 'assets/img/interface/button_end_menu.png');
-				this.game.load.spritesheet('buttonReplay', 'assets/img/interface/button_end_replay.png');
+				this.game.load.spritesheet('buttonMenu', 'assets/img/interface/button_end_menu.png', 220, 60, 2);
+				this.game.load.spritesheet('buttonReplay', 'assets/img/interface/button_end_replay.png', 220, 60, 2);
 			},
 
 			create: function() {

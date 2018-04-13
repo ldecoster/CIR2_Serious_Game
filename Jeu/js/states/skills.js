@@ -57,6 +57,8 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 						if(child.hasOwnProperty('category')) {
 							this.skillsContainer[child.name] = this.game.add.button(child.x, child.y, child.category);
 							this.skillsContainer[child.name].alpha = child.alpha;
+							this.skillsContainer[child.name].input.pixelPerfectOver = true;
+							this.skillsContainer[child.name].input.pixelPerfectClick = true;
 							this.skillsContainer[child.name].events.onInputDown.add(discovery.bind(this, child));
 						}
 						

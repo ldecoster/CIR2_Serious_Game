@@ -14,7 +14,7 @@ define(['js/models/System.js', 'text!assets/json/config.json', 'text!assets/json
 				};
 
 			    var background = this.game.add.tileSprite(0, 0, 1350, 750, 'backgroundMenu');
-			    var button = this.game.add.button(this.game.world.centerX - 95, 400, 'buttonPlay', actionOnClick, this);
+			    var button = this.game.add.button(this.game.world.centerX - 95, 400, 'buttonPlay', actionOnClick, this, 1, 0);
 			}
 		};
 
