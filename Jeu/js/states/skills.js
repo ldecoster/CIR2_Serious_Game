@@ -1,5 +1,5 @@
-define(['phaser', 'js/models/System.js'],
-	function (Phaser, System) {
+define(['phaser', 'js/models/System.js', 'jquery'],
+	function (Phaser, System, $) {
 		var skills = function () {
 		};
 
@@ -16,21 +16,39 @@ define(['phaser', 'js/models/System.js'],
 				this.system.createFullScreen();
 
 				var background = this.game.add.sprite(330, 20, 'background');
-				var transEnerg = this.game.add.sprite(655, 220, 'transEnerg');
-				var campInfl = this.game.add.sprite(536, 220, 'campInfl');
-				var energPol = this.game.add.sprite(530, 317, 'energPol');
 
-				this.skillsContainer = {};
+				this.skillsContainer = [];
 
-				// Fonction de découverte des sous-compétences
-				var discovery = function(element) {
-					// Si l'élément a des enfants, on change la valeur de la propriété alpha à 1 et on actualise
-					if(element.hasOwnProperty('children')) {
-						for(let child of element.children) {
-							child.alpha = 1;
-						}
-						readJSON(this.skillsObject);
+				// Nettoyage de skillsContainer
+				var clearSkillsContainer = function() {
+					for(let child in this.skillsContainer) {
+						this.skillsContainer[child].destroy();
 					}
+				}.bind(this);
+
+				// Fonction de découverte de la compétence et affichage partiel de ses sous-compétences
+				var discovery = function(skillClickTarget) {
+					function search(values) {
+						$.each(values, function(i, v) {
+							if (v.name === skillClickTarget.name && v.debloque === 0) {
+								// Découverte de la compétence
+								v.debloque = 1;
+								v.alpha = 1;
+								if(v.hasOwnProperty('children')) {
+									for(let child of v.children) {
+										child.alpha = 0.7;
+									}
+								}
+							}
+							if (v.children) {
+								search(v.children);
+							}
+						});
+					}
+
+					search(this.skillsObject);
+					clearSkillsContainer();
+					readJSON(this.skillsObject);
 				};
 
 				// Parcours récursif du JSON
@@ -39,12 +57,10 @@ define(['phaser', 'js/models/System.js'],
 						if(child.hasOwnProperty('category')) {
 							this.skillsContainer[child.name] = this.game.add.button(child.x, child.y, child.category);
 							this.skillsContainer[child.name].alpha = child.alpha;
+							this.skillsContainer[child.name].events.onInputDown.add(discovery.bind(this, child));
 						}
 						
 						if(child.hasOwnProperty('children')) {
-							if(child.hasOwnProperty('category')) {
-								this.skillsContainer[child.name].events.onInputDown.add(discovery.bind(this, child));
-							}
 							readJSON(child.children);
 						}
 					}
@@ -60,9 +76,6 @@ define(['phaser', 'js/models/System.js'],
 				if(this.temp === 100) {
 					this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				}
-				//setTimeout(function() {
-				//	this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
-				//}.bind(this), 5000);
 			}
 		};
 

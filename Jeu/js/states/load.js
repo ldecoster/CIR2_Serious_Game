@@ -38,10 +38,10 @@ define([],
 				/* Ressources de l'écran de compétences */
 
 				// Création de l'anneau central
-				this.game.load.image('transEnerg', 'assets/img/skills_tree/arc_transition_energetique.png');
-				this.game.load.image('campInfl', 'assets/img/skills_tree/arc_campagne_influence.png');
-				this.game.load.image('energPol', 'assets/img/skills_tree/arc_energie_polluante.png');
 				this.game.load.image('background', 'assets/img/skills_tree/Background.png');
+				this.game.load.spritesheet('transEnerg', 'assets/img/skills_tree/arc_transition_energetique.png');
+				this.game.load.spritesheet('campInfl', 'assets/img/skills_tree/arc_campagne_influence.png');
+				this.game.load.spritesheet('energPol', 'assets/img/skills_tree/arc_energie_polluante.png');
 
 				// Ajout des compétences débloquables
 				this.game.load.spritesheet('greenBullet', 'assets/img/skills_tree/bullet_transition_energetique.png');
