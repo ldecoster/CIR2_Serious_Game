@@ -2,7 +2,7 @@
 	{
 		"name": "transEnerg",
 		"cout": 10,
-        "debloque" : 1,
+        "debloque" : 0,
         "valeur" : 1,
 		"children": [
 			{
@@ -136,7 +136,7 @@
 	{
 		"name": "campInfl",
 		"cout": 10,
-        "debloque": 1,
+        "debloque": 0,
         "valeur" : 1,
 		"children": [
 			{
@@ -186,7 +186,7 @@
 	{
 		"name": "energPol",
 		"cout": 10,
-        "debloque": 1,
+        "debloque": 0,
         "valeur" : 1,
 		"children": [
 			{
