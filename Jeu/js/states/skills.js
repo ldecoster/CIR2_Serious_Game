@@ -20,11 +20,11 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 				this.skillsContainer = [];
 
 				// Nettoyage de skillsContainer
-				var clearSkillsContainer = function() {
+				var clearSkillsContainer = () => {
 					for(let child in this.skillsContainer) {
 						this.skillsContainer[child].destroy();
 					}
-				}.bind(this);
+				};
 
 				// Fonction de découverte de la compétence et affichage partiel de ses sous-compétences
 				var discovery = function(skillClickTarget) {
@@ -52,7 +52,7 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 				};
 
 				// Parcours récursif du JSON
-				var readJSON = function(object) {
+				var readJSON = object => {
 					for(let child of object) {
 						if(child.hasOwnProperty('category')) {
 							this.skillsContainer[child.name] = this.game.add.button(child.x, child.y, child.category);
@@ -66,7 +66,7 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 							readJSON(child.children);
 						}
 					}
-				}.bind(this);
+				};
 
 				readJSON(this.skillsObject);
 
@@ -75,7 +75,7 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 
 			update: function () {
 				this.temp++;
-				if(this.temp === 100) {
+				if(this.temp === 500) {
 					this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				}
 			}

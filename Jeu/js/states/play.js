@@ -13,9 +13,8 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 			create: function () {	
 
-				this.mapContainer = [];
-
 				// On ajout les 3 versions de chaque subdivision de la carte et on initialise leur .alpha
+				this.mapContainer = [];				
 				for(let mapPartObject of this.mapsObject) {
 					this.mapContainer[mapPartObject.name] = this.game.add.image(0, 0, mapPartObject.name);
 					this.mapContainer[mapPartObject.name].alpha = mapPartObject.alpha;
@@ -26,13 +25,12 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.buttonNotification.alpha = 0;
 
 				this.buttonSkills = this.game.add.button(1006, 653, 'buttonSkills', function() {
+					clearInterval(this.pointCounter);
 					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				}, this);
 
 				// Fonction à changer après
-				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {
-					
-				});
+				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {});
 
 				this.buttonStats = this.game.add.button(10, 653, 'buttonStats', function() {
 					colorswap(this.mapContainer.frZo1, this.mapContainer.frZo1P, this.mapContainer.frZo1S, false);
@@ -42,6 +40,36 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					colorswap(this.mapContainer.frZo5, this.mapContainer.frZo5P, this.mapContainer.frZo5S, false);
 					colorswap(this.mapContainer.frZo6, this.mapContainer.frZo6P, this.mapContainer.frZo6S, false);
 				}, this);
+
+
+				// On récupère tous les skills présents dans le JSON afin de faciliter les calculs
+				getAllSkills = () => {
+					var skillsContainer = [];
+					// Parcours récursif du JSON
+					var readJSON = object => {
+						for(let child of object) {
+							skillsContainer.push(child);
+							if(child.hasOwnProperty('children')) {
+								readJSON(child.children);
+							}
+						}
+					};
+					readJSON(this.skillsObject);
+					return skillsContainer;
+				};
+				this.skillsContainer = getAllSkills();
+
+				//console.log(this.skillsContainer.find(x => x.name === "transEnerg"));
+
+				this.pointCounter = setInterval(() => {
+					if(this.gameObject.tempsPoint === 20) {
+						this.gameObject.point += 5;
+						this.gameObject.tempsPoint = 0;
+					} else {
+						this.gameObject.tempsPoint++;
+					}
+					console.log(this.gameObject.point + ' / ' + this.gameObject.tempsPoint);
+				}, 1000);
 
 				// Création du chronomètre
 				this.system = new System(this.game);

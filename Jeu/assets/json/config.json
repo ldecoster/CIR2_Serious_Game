@@ -1,4 +1,6 @@
 {
+	"point": 10,
+	"tempsPoint": 0,
 	"remainingTime": 300,
 	"barParam":{
 		"name": "pollution",
