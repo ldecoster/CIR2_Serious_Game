@@ -16,7 +16,7 @@
 				"y": 160,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.2,
+				"valeur": 4,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -36,7 +36,7 @@
 						"y": 100,
 						"cout": 20,
 						"debloque": 0,
-						"valeur": 0.7,
+						"valeur": 2,
 						"category": "greenBullet"
 					},
 					{
@@ -58,7 +58,7 @@
 				"y": 250,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.1,
+				"valeur": 3,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -68,7 +68,7 @@
 						"y": 190,
 						"cout": 20,
 						"debloque": 0,
-						"valeur": 1,
+						"valeur": 2,
 						"category": "greenBullet"
 					},
 					{
@@ -78,7 +78,7 @@
 						"y": 260,
 						"cout": 20,
 						"debloque": 0,
-						"valeur": 0.5,
+						"valeur": 1,
 						"category": "greenBullet"
 					}
 				]
@@ -90,7 +90,7 @@
 				"y": 370,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.2,
+				"valeur": 2,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -100,7 +100,7 @@
 						"y": 350,
 						"cout": 20,
 						"debloque": 0,
-						"valeur": 0.5,
+						"valeur": 2,
 						"category": "greenBullet"
 					},
 					{
@@ -122,7 +122,7 @@
 				"y": 470,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.4,
+				"valeur": 3,
 				"category": "greenBullet"
 			},
 			{
@@ -132,7 +132,7 @@
 				"y": 510,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.2,
+				"valeur": 4,
 				"category": "greenBullet"
 			}
 		]
@@ -154,7 +154,7 @@
 				"y": 200,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.4,
+				"valeur": 4,
 				"category": "orangeBullet",
 				"children": [
 					{
@@ -186,7 +186,7 @@
 				"y": 160,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.3,
+				"valeur": 1,
 				"category": "orangeBullet"
 			}
 		]
@@ -208,7 +208,7 @@
 				"y": 480,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.8,
+				"valeur": 4,
 				"category": "redBullet",
 				"children": [
 					{
@@ -228,7 +228,7 @@
 						"y": 510,
 						"cout": 20,
 						"debloque": 0,
-						"valeur": 1,
+						"valeur": 3,
 						"category": "redBullet"
 					},
 					{
@@ -238,7 +238,7 @@
 						"y": 560,
 						"cout": 20,
 						"debloque": 0,
-						"valeur": 2.5,
+						"valeur": 3,
 						"category": "redBullet"
 					},
 					{
@@ -248,7 +248,7 @@
 						"y": 580,
 						"cout": 20,
 						"debloque": 0,
-						"valeur": 0.5,
+						"valeur": 5,
 						"category": "redBullet"
 					}
 				]
@@ -260,7 +260,7 @@
 				"y": 340,
 				"cout": 15,
 				"debloque": 0,
-				"valeur": 0.2,
+				"valeur": 2,
 				"category": "redBullet"
 			}
 		]

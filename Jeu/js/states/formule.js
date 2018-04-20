@@ -214,6 +214,6 @@
             destruction.cout += 3;
             entretien.cout += 3;
         }
-    };   
+    };
 
 })();
