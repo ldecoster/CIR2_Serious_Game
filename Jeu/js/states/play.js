@@ -41,6 +41,12 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					colorswap(this.mapContainer.frZo6, this.mapContainer.frZo6P, this.mapContainer.frZo6S, false);
 				}, this);
 
+				// Texte affichant les Points
+				this.pointDisplay = this.game.add.text(1150, 16, 'Point(s) : ' + this.gameObject.point, {
+					fontSize: '32px',
+					fill: '#555'
+				});
+
 
 				// On récupère tous les skills présents dans le JSON afin de faciliter les calculs
 				getAllSkills = () => {
@@ -141,6 +147,8 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 			update: function () {
 				this.gameObject.remainingTime = this.system.getClock();
+
+				this.pointDisplay.text = 'Point(s) : ' + this.gameObject.point;
 
 				if(this.pollutionBar.PV > 0) {
 					this.pollutionBar.removePV(1);
