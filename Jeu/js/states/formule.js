@@ -1,48 +1,44 @@
 (function() {
 
-    /*
-    var intervalID;
-    var point = 10; // On commence à 10 points pour acheter la première compétence.
-    var getPoint = function() {
-      intervalID = setInterval(function() {
-          point += 5;
-      }, 20000);
-    };
-    */
-
     var getPointTransEnerg = function() {
         var gaz = gaz.valeur * ( biomasse.valeur  + biogaz.valeur) ;
         var thermique = thermique.valeur * ( geothermie.valeur  + geothermieMers.valeur);
         var hydraulique = hydraulique.valeur * ( centrale.valeur + barrage.valeur + hydrolienne.valeur);
         var eolienne =  eolienne.valeur;
         var solaire = solaire.valeur;
-        if (gaz + thermique + hydraulique + eolienne + solaire === 0){
+
+        var total = gaz + thermique + hydraulique + eolienne + solaire;
+        if (total === 0){
             point += 1;
         }
         else {
-            point += gaz + thermique + hydraulique + eolienne + solaire;
+            point += total;
         }
     };
 
     var getPointEnergiePolluante = function() {
         var nucleaire = nuleaire.valeur * ( recyclDechet.valeur + entretien.valeur + destruction.valeur + reconversion.valeur);
         var pesticide = pesticide.valeur;
-        if (pesticide + nucleaire === 0){
+
+        var total = pesticide + nuclaire;
+        if (total === 0){
             point +=1;
         }
         else {
-            point += pesticide + nucleaire;
+            point += total;
         }
     };
 
     var getPointCampagne = function() {
         var transport = transport.valeur * ( tramway.valeur + busEco.valeur);
         var entreprise = entreprise.valeur;
-        if (transport + entreprise === 0){
+
+        var total = transport + entreprise;
+        if (total === 0){
             point += 1;
         }
         else {
-            point += transport + entreprise;
+            point += total;
         }
     };
 

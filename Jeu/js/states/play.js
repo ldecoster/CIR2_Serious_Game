@@ -132,7 +132,6 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					} else {
 						this.gameObject.tempsPoint++;
 					}
-					console.log(this.gameObject.point + ' / ' + this.gameObject.tempsPoint);
 				}, 1000);
 
 				// Création du chronomètre
