@@ -31,6 +31,19 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 					function search(values) {
 						$.each(values, function(i, v) {
 							if (v.name === skillClickTarget.name && v.debloque === 0) {
+								// Ajout des points
+								switch (skillClickTarget.category) {
+									case 'greenBullet':
+									getPointTransEnerg();
+									break;
+									case 'orangeBullet':
+									getPointCampagne();
+									break;
+									case 'redBullet':
+									getPointEnergiePolluante();
+									break;
+								}
+
 								// Découverte de la compétence
 								v.debloque = 1;
 								v.alpha = 1;
@@ -67,8 +80,86 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 						}
 					}
 				};
-
 				readJSON(this.skillsObject);
+
+
+				// On récupère tous les skills présents dans le JSON afin de faciliter les calculs
+				var getAllSkills = () => {
+					var skillsContainerReadOnly = [];
+					// Parcours récursif du JSON
+					var readJSON = object => {
+						for(let child of object) {
+							skillsContainerReadOnly.push(child);
+							if(child.hasOwnProperty('children')) {
+								readJSON(child.children);
+							}
+						}
+					};
+					readJSON(this.skillsObject);
+					return skillsContainerReadOnly;
+				};
+				this.skillsContainerReadOnly = getAllSkills();
+
+				// Renvoie le skill qui correspond au nom passé en paramètre
+				var searchSkill = (skillName) => {
+					return this.skillsContainerReadOnly.find(x => x.name === skillName);
+				};
+
+				// Renvoie la valeur d'un skill s'il est débloqué ou 0 sinon
+				var valueSkill = (skillName) => {
+					var skill = searchSkill(skillName);
+					if(skill.debloque === 0) {
+						return 0;
+					} else {
+						return skill.valeur;
+					}
+				};
+
+				// Fonction qui ajoute de(s) Point(s) lors du (futur) déblocage d'une compétence de TransEnerg 
+				var getPointTransEnerg = () => {
+					var gaz = valueSkill('gaz') * (valueSkill('biomasse')  + valueSkill('biogaz')) ;
+					var thermique = valueSkill('thermique') * (valueSkill('geothermie')  + valueSkill('geothermieMers'));
+					var hydraulique = valueSkill('hydraulique') * (valueSkill('centrale') + valueSkill('barrage') + valueSkill('hydrolienne'));
+					var eolienne = valueSkill('eolienne');
+					var solaire = valueSkill('solaire');
+
+					var total = gaz + thermique + hydraulique + eolienne + solaire;
+					if (total === 0){
+						this.gameObject.point += 1;
+					}
+					else {
+						this.gameObject.point += total;
+					}
+				};
+
+				// Fonction qui ajoute de(s) Point(s) lors du (futur) déblocage d'une compétence de EnergiePolluante 
+				var getPointEnergiePolluante = () => {
+					var nucleaire = valueSkill('nucleaire') * (valueSkill('recyclDechet') + valueSkill('entretien') + valueSkill('destruction') + valueSkill('reconversion'));
+					var pesticide = valueSkill('pesticide');
+
+					var total = nucleaire + pesticide;
+					if (total === 0){
+						this.gameObject.point +=1;
+					}
+					else {
+						this.gameObject.point += total;
+					}
+				};
+
+				// Fonction qui ajoute de(s) Point(s) lors du (futur) déblocage d'une compétence de Campagne 
+				var getPointCampagne = () => {
+					var transport = valueSkill('transport') * (valueSkill('tramway') + valueSkill('busEco'));
+					var entreprise = valueSkill('entreprise');
+
+					var total = transport + entreprise;
+					if (total === 0){
+						this.gameObject.point += 1;
+					}
+					else {
+						this.gameObject.point += total;
+					}
+				};
+
 
 				this.temp = 0;
 			},
