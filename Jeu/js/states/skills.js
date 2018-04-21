@@ -12,6 +12,10 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 			},
 
 			create: function () {
+				this.buttonReturn = this.game.add.button(10, 653, 'buttonReturn', () => {
+					this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
+				});
+
 				this.system = new System(this.game);
 				this.system.createFullScreen();
 
@@ -159,16 +163,9 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 						this.gameObject.point += total;
 					}
 				};
-
-
-				this.temp = 0;
 			},
 
 			update: function () {
-				this.temp++;
-				if(this.temp === 500) {
-					this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
-				}
 			}
 		};
 

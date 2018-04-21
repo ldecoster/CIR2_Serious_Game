@@ -37,6 +37,9 @@ define([],
 
 				/* Ressources de l'écran de compétences */
 
+				// Création des boutons
+				this.game.load.image('buttonReturn', 'assets/img/interface/button_return.png');
+
 				// Création de l'anneau central
 				this.game.load.image('background', 'assets/img/skills_tree/Background.png');
 				this.game.load.spritesheet('transEnerg', 'assets/img/skills_tree/arc_transition_energetique.png');
