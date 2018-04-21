@@ -38,9 +38,12 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 
 				// Fonction de découverte de la compétence et affichage partiel de ses sous-compétences
 				var discovery = function(skillClickTarget) {
-					function search(values) {
-						$.each(values, function(i, v) {
+					var search = (values) => {
+						$.each(values, (i, v) => {
 							if (v.name === skillClickTarget.name && v.debloque === 0) {
+								// Diminution du taux de pollution
+								this.gameObject.barParam.PV -= 3.5;
+
 								// Ajout des points
 								switch (skillClickTarget.category) {
 									case 'greenBullet':
@@ -67,7 +70,7 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 								search(v.children);
 							}
 						});
-					}
+					};
 
 					search(this.skillsObject);
 					clearSkillsContainer();

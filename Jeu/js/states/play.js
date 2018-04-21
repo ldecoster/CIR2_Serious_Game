@@ -72,9 +72,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 				this.pointDisplay.text = 'Points : ' + this.gameObject.point;
 
-				if(this.pollutionBar.PV > 0) {
-					this.pollutionBar.removePV(1);
-				}
+				//this.pollutionBar.removePV(1);
 
 				// Si le temps est écoulé ou si le le taux de pollution atteint 100, on déclenche l'état de défaite
 				if((this.pollutionBar.PV === this.pollutionBar.pvmax) || (this.system.getClock() === 0)) {
