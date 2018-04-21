@@ -16,6 +16,12 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 					this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				});
 
+				// Texte affichant les Points
+				this.pointDisplay = this.game.add.text(1145, 16, 'Points : ' + this.gameObject.point, {
+					fontSize: '32px',
+					fill: '#555'
+				});
+
 				this.system = new System(this.game);
 				this.system.createFullScreen();
 
@@ -166,6 +172,7 @@ define(['phaser', 'js/models/System.js', 'jquery'],
 			},
 
 			update: function () {
+				this.pointDisplay.text = 'Points : ' + this.gameObject.point;
 			}
 		};
 

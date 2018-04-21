@@ -42,7 +42,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				}, this);
 
 				// Texte affichant les Points
-				this.pointDisplay = this.game.add.text(1150, 16, 'Point(s) : ' + this.gameObject.point, {
+				this.pointDisplay = this.game.add.text(1145, 16, 'Points : ' + this.gameObject.point, {
 					fontSize: '32px',
 					fill: '#555'
 				});
@@ -70,7 +70,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 			update: function () {
 				this.gameObject.remainingTime = this.system.getClock();
 
-				this.pointDisplay.text = 'Point(s) : ' + this.gameObject.point;
+				this.pointDisplay.text = 'Points : ' + this.gameObject.point;
 
 				if(this.pollutionBar.PV > 0) {
 					this.pollutionBar.removePV(1);
