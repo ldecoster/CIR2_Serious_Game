@@ -4,6 +4,7 @@ define(['phaser', 'jquery'],
 			this._game = game;
 			this._gameObject = gameObject;
 			this._skillsObject = skillsObject;
+			this._text = undefined;
 			this.skillsContainer = [];
 			this.addButton(this._skillsObject);
 			this.skillsContainerReadOnly = [];
@@ -24,16 +25,18 @@ define(['phaser', 'jquery'],
 		//Affiche le nom de la compétence quan on passe la souris dessus
 		SkillsHandler.prototype.overName = function(element){
 			if(element.alpha){
-			    var style = {font: "23px Arial", fill: "#ffffff"};
-			    text = this._game.add.text(this._game.world.centerX, this._game.world.centerY, element.realName, style);
-			    text.anchor.set(0.5);
-			    console.log(text);
+				var style = {font: "23px Arial", fill: "#ffffff"};
+				this._text = this._game.add.text(this._game.world.centerX, this._game.world.centerY, element.realName, style);
+				this._text.anchor.set(0.5);
+				console.log(this._text);
 			}
 		};
 
 		//Efface le nom de la compétence quand la souris ne la survole pas
 		SkillsHandler.prototype.cleanText = function(element){
-			    text.destroy();
+			if(this._text !== undefined) {
+				this._text.destroy();
+			}
 		};
 
 		// Ajout récursif des boutons issus du JSON
@@ -84,7 +87,7 @@ define(['phaser', 'jquery'],
 			this.clearSkillsContainer(); // Destructinon de l'arbre de compétences
 			this.addButton(this._skillsObject); // Reconstruction de l'arbre
 
-			text.destroy();
+			this._text.destroy();
 		};
 
 		/**
