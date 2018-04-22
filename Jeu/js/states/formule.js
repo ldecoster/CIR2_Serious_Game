@@ -12,9 +12,9 @@
                 taux += 0.7;
             }
         }, 10000);
-        if( "".debloque === 1 ){ //Quand on achete une competence on diminue le taux de pollution de la bar de 3.5
-            taux -= 3.5;
-        }
+        //if( "".debloque === 1 ){ //Quand on achete une competence on diminue le taux de pollution de la bar de 3.5
+        //    taux -= 3.5;
+        //}
     };
 
     var premierBranche = function() {

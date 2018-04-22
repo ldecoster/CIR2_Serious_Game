@@ -20,6 +20,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					this.mapContainer[mapPartObject.name].alpha = mapPartObject.alpha;
 				}
 
+
 				this.buttonBackground = this.game.add.image(28, 653, 'buttonBackground');
 				this.buttonNotification = this.game.add.image(795, 608, 'buttonNotification');
 				this.buttonNotification.alpha = 0;
@@ -29,7 +30,6 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				}, this);
 
-				// Fonction à changer après
 				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {});
 
 				this.buttonStats = this.game.add.button(10, 653, 'buttonStats', function() {
@@ -40,6 +40,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					colorswap(this.mapContainer.frZo5, this.mapContainer.frZo5P, this.mapContainer.frZo5S, false);
 					colorswap(this.mapContainer.frZo6, this.mapContainer.frZo6P, this.mapContainer.frZo6S, false);
 				}, this);
+
 
 				// Texte affichant les Points
 				this.pointDisplay = this.game.add.text(1145, 16, 'Points : ' + this.gameObject.point, {
