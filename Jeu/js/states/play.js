@@ -50,10 +50,10 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				});
 
 				var addPollution = () => {
-					if(this.SkillsHandler.searchSkill('nucleaire').debloque === 0) {
+					if(this.skillsHandler.searchSkill('nucleaire').debloque === 0) {
 						this.pollutionBar.addPV(0.5);
 					} else {
-						let nuc = this.SkillsHandler.searchSkill('entretien').debloque + this.SkillsHandler.searchSkill('destruction').debloque + this.SkillsHandler.searchSkill('recyclDechet').debloque;
+						let nuc = this.skillsHandler.searchSkill('entretien').debloque + this.skillsHandler.searchSkill('destruction').debloque + this.skillsHandler.searchSkill('recyclDechet').debloque;
 						if(nuc === 0) {
 							this.pollutionBar.addPV(0.7);	
 						}
@@ -81,7 +81,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.pollutionBar = new BarController(this.game, this.gameObject.barParam);
 				this.pollutionBar.printPercentage();
 
-				this.SkillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject);
+				this.skillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject);
 			},
 
 			update: function () {

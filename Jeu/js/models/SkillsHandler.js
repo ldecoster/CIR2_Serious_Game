@@ -69,6 +69,9 @@ define(['phaser', 'jquery'],
 						// Ajout des points
 						this.addPoints(skillClickTarget);
 
+						// Augmentation du prix des compétences voisinnes
+						this.increaseSkillsCost(skillClickTarget);
+
 						// Découverte de la compétence
 						v.debloque = 1;
 						v.alpha = 1;
@@ -176,6 +179,30 @@ define(['phaser', 'jquery'],
 				}
 				else {
 					this._gameObject.point += points;
+				}
+			}
+		};
+
+		// Augmente le prix des compétences voisines lors de l'achat d'une compétence
+		SkillsHandler.prototype.increaseSkillsCost = function(skill) {
+			var arr;
+			// Parcours récursif du JSON
+			var readJSON = object => {
+				for(let child of object) {
+					if(child === skill) {
+						arr = object;
+						break;
+					}
+					if(child.hasOwnProperty('children')) {
+						readJSON(child.children);
+					}
+				}
+			};
+			readJSON(this._skillsObject);
+			// On augmente le prix des compétences voisines en fonction de leur profondeur dans l'arbre
+			for(let child of arr) {
+				if(child !== skill) {
+					child.cout += skill.profondeur;
 				}
 			}
 		};

@@ -6,8 +6,9 @@
 		"x": 655,
 		"y": 220,
 		"cout": 10,
-		"debloque" : 0,
-		"valeur" : 1,
+		"debloque": 0,
+		"valeur": 1,
+		"profondeur": 1,
 		"category": "transEnerg",
 		"children": [
 			{
@@ -19,6 +20,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 4,
+				"profondeur": 2,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -30,6 +32,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 1,
+						"profondeur": 3,
 						"category": "greenBullet"
 					},
 					{
@@ -41,6 +44,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 2,
+						"profondeur": 3,
 						"category": "greenBullet"
 					},
 					{
@@ -52,6 +56,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 1,
+						"profondeur": 3,
 						"category": "greenBullet"
 					}
 				]
@@ -65,6 +70,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 3,
+				"profondeur": 2,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -76,6 +82,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 2,
+						"profondeur": 3,
 						"category": "greenBullet"
 					},
 					{
@@ -87,6 +94,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 1,
+						"profondeur": 3,
 						"category": "greenBullet"
 					}
 				]
@@ -100,6 +108,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 2,
+				"profondeur": 2,
 				"category": "greenBullet",
 				"children": [
 					{
@@ -111,6 +120,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 2,
+						"profondeur": 3,
 						"category": "greenBullet"
 					},
 					{
@@ -122,6 +132,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 1,
+						"profondeur": 3,
 						"category": "greenBullet"
 					}
 				]
@@ -135,6 +146,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 3,
+				"profondeur": 2,
 				"category": "greenBullet"
 			},
 			{
@@ -146,6 +158,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 4,
+				"profondeur": 2,
 				"category": "greenBullet"
 			}
 		]
@@ -158,7 +171,8 @@
 		"y": 220,
 		"cout": 10,
 		"debloque": 0,
-		"valeur" : 1,
+		"valeur": 1,
+		"profondeur": 1,
 		"category": "campInfl",
 		"children": [
 			{
@@ -170,6 +184,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 4,
+				"profondeur": 2,
 				"category": "orangeBullet",
 				"children": [
 					{
@@ -181,6 +196,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 3,
+						"profondeur": 3,
 						"category": "orangeBullet"
 					},
 					{
@@ -192,6 +208,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 2,
+						"profondeur": 3,
 						"category": "orangeBullet"
 					}
 				]
@@ -205,6 +222,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 1,
+				"profondeur": 2,
 				"category": "orangeBullet"
 			}
 		]
@@ -217,7 +235,8 @@
 		"y": 317,
 		"cout": 10,
 		"debloque": 0,
-		"valeur" : 1,
+		"valeur": 1,
+		"profondeur": 1,
 		"category": "energPol",
 		"children": [
 			{
@@ -229,6 +248,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 4,
+				"profondeur": 2,
 				"category": "redBullet",
 				"children": [
 					{
@@ -240,6 +260,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 2,
+						"profondeur": 3,
 						"category": "redBullet"
 					},
 					{
@@ -251,6 +272,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 3,
+						"profondeur": 3,
 						"category": "redBullet"
 					},
 					{
@@ -262,6 +284,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 3,
+						"profondeur": 3,
 						"category": "redBullet"
 					},
 					{
@@ -273,6 +296,7 @@
 						"cout": 20,
 						"debloque": 0,
 						"valeur": 5,
+						"profondeur": 3,
 						"category": "redBullet"
 					}
 				]
@@ -286,6 +310,7 @@
 				"cout": 15,
 				"debloque": 0,
 				"valeur": 2,
+				"profondeur": 2,
 				"category": "redBullet"
 			}
 		]
