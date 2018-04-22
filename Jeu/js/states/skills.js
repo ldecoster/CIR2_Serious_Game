@@ -28,7 +28,7 @@ define(['phaser', 'js/models/System.js', 'js/models/SkillsHandler'],
 				this.system = new System(this.game);
 				this.system.createFullScreen();
 
-				this.SkillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject);
+				this.SkillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject, true);
 			},
 
 			update: function () {

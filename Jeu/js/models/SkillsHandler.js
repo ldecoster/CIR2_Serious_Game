@@ -1,14 +1,16 @@
 define(['phaser', 'jquery'],
 	function(Phaser, $) {
-		var SkillsHandler = function(game, gameObject, skillsObject) {
+		var SkillsHandler = function(game, gameObject, skillsObject, skillsState) {
 			this._game = game;
 			this._gameObject = gameObject;
 			this._skillsObject = skillsObject;
 			this._text = undefined;
 			this.skillsContainer = [];
-			this.addButton(this._skillsObject);
 			this.skillsContainerReadOnly = [];
-			this.skillsContainerReadOnly = this.getAllSkills(this._skillsObject);
+			this.skillsContainerReadOnly = this.getAllSkills();
+			if(skillsState) {
+				this.addButton(this._skillsObject);
+			}
 		};
 
 		/**
@@ -28,7 +30,6 @@ define(['phaser', 'jquery'],
 				var style = {font: "23px Arial", fill: "#ffffff"};
 				this._text = this._game.add.text(this._game.world.centerX, this._game.world.centerY, element.realName, style);
 				this._text.anchor.set(0.5);
-				console.log(this._text);
 			}
 		};
 
@@ -95,7 +96,7 @@ define(['phaser', 'jquery'],
 		 */
 
 		// On récupère tous les skills présents dans le JSON afin de faciliter l'accès aux propriétés des skills
-		SkillsHandler.prototype.getAllSkills = function(skillsObject) {
+		SkillsHandler.prototype.getAllSkills = function() {
 			var skillsContainerReadOnly = [];
 			// Parcours récursif du JSON
 			var readJSON = object => {
@@ -106,7 +107,7 @@ define(['phaser', 'jquery'],
 					}
 				}
 			};
-			readJSON(skillsObject);
+			readJSON(this._skillsObject);
 			return skillsContainerReadOnly;
 		};
 
@@ -168,6 +169,7 @@ define(['phaser', 'jquery'],
 				points = this.getPointsEnergiePolluante();
 				break;
 			}
+			// Si on ne débloque pas une des 3 compétences primaires alors...
 			if(points !== undefined) {
 				if (points === 0){
 					this._gameObject.point += 1;

@@ -100,6 +100,10 @@ var BarController = (function () {
     };
 
     /*Modification de l'état de la jauge*/
+    
+    Bar.prototype.getPV = function(){
+        return this.PV;
+    };
 
     Bar.prototype.addPV = function (addPV) {
         //Rajoute les PV et met à jour l'affichage

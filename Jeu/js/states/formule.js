@@ -1,22 +1,4 @@
 (function() {
-
-    
-
-    //var taux = 95;
-    var TauxDePollution = function(){
-        intervalID = setInterval(function() {
-            if (nuclaire.debloque === 0) {
-                taux += 0.5;
-            }
-            if( (nucleaire.debloque === 1) && (entretien.debloque + destruction.debloque + recyclDechet.debloque ===0) ){
-                taux += 0.7;
-            }
-        }, 10000);
-        //if( "".debloque === 1 ){ //Quand on achete une competence on diminue le taux de pollution de la bar de 3.5
-        //    taux -= 3.5;
-        //}
-    };
-
     var premierBranche = function() {
         if(transEnerg.debloque === 1){
             energPol.cout += 2;

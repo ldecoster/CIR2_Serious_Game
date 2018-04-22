@@ -1,5 +1,5 @@
-define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js'],
-	function (Phaser, Bar, System, color) {
+define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js', 'js/models/SkillsHandler'],
+	function (Phaser, Bar, System, color, SkillsHandler) {
 		var play = function () {
 		};
 
@@ -26,7 +26,8 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.buttonNotification.alpha = 0;
 
 				this.buttonSkills = this.game.add.button(1006, 653, 'buttonSkills', function() {
-					clearInterval(this.pointCounter);
+					clearInterval(this.counter);
+					this.gameObject.barParam.PV = this.pollutionBar.getPV();
 					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				}, this);
 
@@ -48,14 +49,27 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					fill: '#555'
 				});
 
+				var addPollution = () => {
+					if(this.SkillsHandler.searchSkill('nucleaire').debloque === 0) {
+						this.pollutionBar.addPV(0.5);
+					} else {
+						let nuc = this.SkillsHandler.searchSkill('entretien').debloque + this.SkillsHandler.searchSkill('destruction').debloque + this.SkillsHandler.searchSkill('recyclDechet').debloque;
+						if(nuc === 0) {
+							this.pollutionBar.addPV(0.7);	
+						}
+					}
+				};
+
 				// Incrémentation automatique des points
-				this.pointCounter = setInterval(() => {
-					if(this.gameObject.tempsPoint === 20) {
+				this.counter = setInterval(() => {
+					if(this.gameObject.tempsPoint === 10) {
+						addPollution();
+					} else if(this.gameObject.tempsPoint === 20) {
+						addPollution();
 						this.gameObject.point += 5;
 						this.gameObject.tempsPoint = 0;
-					} else {
-						this.gameObject.tempsPoint++;
 					}
+					this.gameObject.tempsPoint++;
 				}, 1000);
 
 				// Création du chronomètre
@@ -66,14 +80,14 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				// Création de la barre de pollution
 				this.pollutionBar = new BarController(this.game, this.gameObject.barParam);
 				this.pollutionBar.printPercentage();
+
+				this.SkillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject);
 			},
 
 			update: function () {
 				this.gameObject.remainingTime = this.system.getClock();
 
 				this.pointDisplay.text = 'Points : ' + this.gameObject.point;
-
-				//this.pollutionBar.removePV(1);
 
 				// Si le temps est écoulé ou si le le taux de pollution atteint 100, on déclenche l'état de défaite
 				if((this.pollutionBar.PV === this.pollutionBar.pvmax) || (this.system.getClock() === 0)) {
