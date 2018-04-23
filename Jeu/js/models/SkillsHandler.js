@@ -210,7 +210,10 @@ define(['phaser', 'jquery'],
 			// On augmente le prix des compétences voisines en fonction de leur profondeur dans l'arbre
 			for(let child of arr) {
 				if(child !== skill) {
-					child.cout += skill.profondeur;
+					if(child.debloque === 0) {
+						console.log(child);
+						child.cout += skill.profondeur;
+					}
 				}
 			}
 		};
