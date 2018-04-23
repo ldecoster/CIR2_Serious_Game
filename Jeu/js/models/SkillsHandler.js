@@ -63,23 +63,31 @@ define(['phaser', 'jquery'],
 			var search = (values) => {
 				$.each(values, (i, v) => {
 					if (v.name === skillClickTarget.name && v.debloque === 0) {
-						// Diminution du taux de pollution
-						this._gameObject.barParam.PV -= 3.5;
+						// On vérifie que l'on a assez de points pour acheter la compétence
+						if(this._gameObject.point >= v.cout) {
+							// Achat de la compétence
+							this._gameObject.point -= v.cout;
 
-						// Ajout des points
-						this.addPoints(skillClickTarget);
+							// Diminution du taux de pollution
+							this._gameObject.barParam.PV -= 3.5;
 
-						// Augmentation du prix des compétences voisinnes
-						this.increaseSkillsCost(skillClickTarget);
+							// Ajout des points
+							this.addPoints(skillClickTarget);
 
-						// Découverte de la compétence
-						v.debloque = 1;
-						v.alpha = 1;
-						if(v.hasOwnProperty('children')) {
-							for(let child of v.children) {
-								child.alpha = 0.7;
+							// Augmentation du prix des compétences voisinnes
+							this.increaseSkillsCost(skillClickTarget);
+
+							// Découverte de la compétence
+							v.debloque = 1;
+							v.alpha = 1;
+							if(v.hasOwnProperty('children')) {
+								for(let child of v.children) {
+									child.alpha = 0.7;
+								}
 							}
 						}
+					} else {
+						// Afficher un message ???
 					}
 					if (v.children) {
 						search(v.children);
