@@ -31,14 +31,14 @@ define([],
 
 				// Images des boutons cliquables
 				this.game.load.spritesheet('buttonMissions', 'assets/img/interface/button_mission.png');
-				this.game.load.spritesheet('buttonSkills', 'assets/img/interface/button_skills.png');
-				this.game.load.spritesheet('buttonStats', 'assets/img/interface/button_stats.png');
+				this.game.load.spritesheet('buttonSkills', 'assets/img/interface/button_skills.png', 329, 79, 2);
+				this.game.load.spritesheet('buttonStats', 'assets/img/interface/button_stats.png', 329, 79, 2);
 
 
 				/* Ressources de l'écran de compétences */
 
 				// Création des boutons
-				this.game.load.image('buttonReturn', 'assets/img/interface/button_return.png');
+				this.game.load.spritesheet('buttonReturn', 'assets/img/interface/button_return.png', 329, 79, 2);
 
 				// Création de l'anneau central
 				this.game.load.image('background', 'assets/img/skills_tree/Background.png');

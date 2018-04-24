@@ -16,7 +16,7 @@ define(['phaser', 'js/models/System.js', 'js/models/SkillsHandler'],
 
 				this.buttonReturn = this.game.add.button(10, 653, 'buttonReturn', () => {
 					this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
-				});
+				}, this, 1, 0);
 
 				// Texte affichant les Points
 				this.pointDisplay = this.game.add.text(1145, 16, 'Points : ' + this.gameObject.point, {

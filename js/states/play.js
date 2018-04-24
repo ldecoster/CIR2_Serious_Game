@@ -29,7 +29,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					clearInterval(this.counter);
 					this.gameObject.barParam.PV = this.pollutionBar.getPV();
 					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
-				}, this);
+				}, this, 0, 1);
 
 				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {});
 
@@ -40,7 +40,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					colorswap(this.mapContainer.frZo4, this.mapContainer.frZo4P, this.mapContainer.frZo4S, false);
 					colorswap(this.mapContainer.frZo5, this.mapContainer.frZo5P, this.mapContainer.frZo5S, false);
 					colorswap(this.mapContainer.frZo6, this.mapContainer.frZo6P, this.mapContainer.frZo6S, false);
-				}, this);
+				}, this, 0, 1);
 
 
 				// Texte affichant les Points
