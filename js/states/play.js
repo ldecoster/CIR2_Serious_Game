@@ -11,7 +11,9 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.skillsObject = JSON.parse(skillsFromStates);
 			},
 
-			create: function () {	
+			create: function () {
+				/* Niveau facile mis par défaut */
+				this.pollutionGoal = this.gameObject.levels[0].winPercentage;
 
 				// On ajout les 3 versions de chaque subdivision de la carte et on initialise leur .alpha
 				this.mapContainer = [];				
@@ -19,7 +21,6 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					this.mapContainer[mapPartObject.name] = this.game.add.image(0, 0, mapPartObject.name);
 					this.mapContainer[mapPartObject.name].alpha = mapPartObject.alpha;
 				}
-
 
 				this.buttonBackground = this.game.add.image(28, 653, 'buttonBackground');
 				this.buttonNotification = this.game.add.image(795, 608, 'buttonNotification');
@@ -49,29 +50,6 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					fill: '#555'
 				});
 
-				var addPollution = () => {
-					if(this.skillsHandler.searchSkill('nucleaire').debloque === 0) {
-						this.pollutionBar.addPV(0.5);
-					} else {
-						let nuc = this.skillsHandler.searchSkill('entretien').debloque + this.skillsHandler.searchSkill('destruction').debloque + this.skillsHandler.searchSkill('recyclDechet').debloque;
-						if(nuc === 0) {
-							this.pollutionBar.addPV(0.7);	
-						}
-					}
-				};
-
-				// Incrémentation automatique des points
-				this.counter = setInterval(() => {
-					if(this.gameObject.tempsPoint === 10) {
-						addPollution();
-					} else if(this.gameObject.tempsPoint === 20) {
-						addPollution();
-						this.gameObject.point += 5;
-						this.gameObject.tempsPoint = 0;
-					}
-					this.gameObject.tempsPoint++;
-				}, 1000);
-
 				// Création du chronomètre
 				this.system = new System(this.game);
 				this.system.createFullScreen();
@@ -82,6 +60,30 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.pollutionBar.printPercentage();
 
 				this.skillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject);
+			
+				// Augmente le taux de pollution si certaines compétences ne sont pas débloquées
+				var handlePollution = () => {
+					if(this.skillsHandler.searchSkill('nucleaire').debloque === 0) {
+						this.pollutionBar.addPV(0.5);
+					} else {
+						let nuc = this.skillsHandler.searchSkill('entretien').debloque + this.skillsHandler.searchSkill('destruction').debloque + this.skillsHandler.searchSkill('recyclDechet').debloque;
+						if(nuc === 0) {
+							this.pollutionBar.addPV(0.7);	
+						}
+					}
+				};
+
+				// Incrémentation automatique des points et du taux de pollution
+				this.counter = setInterval(() => {
+					if(this.gameObject.tempsPoint === 10) {
+						handlePollution();
+					} else if(this.gameObject.tempsPoint === 20) {
+						handlePollution();
+						this.gameObject.point += 5;
+						this.gameObject.tempsPoint = 0;
+					}
+					this.gameObject.tempsPoint++;
+				}, 1000);
 			},
 
 			update: function () {
@@ -94,9 +96,9 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					this.game.state.start('Defeat');
 				}
 
-				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
-				if(this.pollutionBar.PV === 0) {
-					//this.game.state.start('Win');
+				// Si le taux de pollution atteint l'objectif, on déclenche l'état de victoire
+				if(this.pollutionBar.PV === this.pollutionGoal) {
+					this.game.state.start('Win');
 				}
 			}
 		};

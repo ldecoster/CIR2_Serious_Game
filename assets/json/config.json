@@ -11,5 +11,19 @@
 		"PV": 95,
 		"barWidth": 626,
 		"barHeight": 30
-	}
+	},
+	"levels": [
+		{
+			"name": "easy",
+			"winPercentage": 50
+		},
+		{
+			"name": "medium",
+			"winPercentage": 35
+		},
+		{
+			"name": "hard",
+			"winPercentage": 10
+		}
+	]
 }
