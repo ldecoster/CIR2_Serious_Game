@@ -277,7 +277,7 @@
 					},
 					{
 						"name": "destruction",
-						"realName": "Destruction\n    des\nCentrales",
+						"realName": "Destruction\n      des\n Centrales",
 						"alpha": 0,
 						"x": 530,
 						"y": 560,
@@ -289,7 +289,7 @@
 					},
 					{
 						"name": "reconversion",
-						"realName": "Reconversion\n    des\nCentrales",
+						"realName": "Reconversion\n       des\n  Centrales",
 						"alpha": 0,
 						"x": 600,
 						"y": 580,

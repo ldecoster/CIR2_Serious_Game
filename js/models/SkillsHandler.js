@@ -40,6 +40,24 @@ define(['phaser', 'jquery'],
 			}
 		};
 
+		//Affiche le prix des compétences non débloquées 
+		SkillsHandler.prototype.price = function(element) {
+			if(element.name == 'transEnerg'){
+				this._price = this._game.add.text(element.x, element.y - 40, element.cout, {font: "23px Arial", fill: "#ffffff"});
+				this._price.anchor.set(-5);
+			} else if(element.alpha){
+				this._price = this._game.add.text(element.x, element.y, element.cout, {font: "23px Arial", fill: "#ffffff"});
+				this._price.anchor.set(-0.25);
+			}
+		}
+
+		SkillsHandler.prototype.cleanPrice = function(element){
+			if(this._price !== undefined) {
+				this._price.destroy();
+				console.log('cleanPrice')
+			}
+		};
+
 		// Ajout récursif des boutons issus du JSON
 		SkillsHandler.prototype.addButton = function(skillsObject){
 			for(let child of skillsObject) {
@@ -55,6 +73,8 @@ define(['phaser', 'jquery'],
 				if(child.hasOwnProperty('children')) {
 					this.addButton(child.children);
 				}
+				this.cleanPrice(child);
+				this.price(child);
 			}
 		};
 
