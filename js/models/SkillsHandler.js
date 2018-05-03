@@ -30,7 +30,7 @@ define(['phaser', 'jquery'],
 		SkillsHandler.prototype.overName = function(element){
 			if(element.alpha){
 				var style = {font: "23px Arial", fill: "#ffffff"};
-				this._text = this._game.add.text(this._game.world.centerX, this._game.world.centerY, element.realName, style);
+				this._text = this._game.add.text(this._game.world.centerX - 5, this._game.world.centerY - 20, element.realName, style);
 				this._text.anchor.set(0.5);
 			}
 		};
@@ -48,7 +48,13 @@ define(['phaser', 'jquery'],
 			if(element.name === 'transEnerg'){
 				price = this._game.add.text(element.x, element.y - 40, element.cout, {font: "23px Arial", fill: "#ffffff"});
 				price.anchor.set(-5);
-			} else if(element.alpha){
+			} else if(element.name === 'campInfl'){
+				price = this._game.add.text(element.x, element.y - 40, element.cout, {font: "23px Arial", fill: "#ffffff"});
+				price.anchor.set(-1.82);
+			} else if(element.name === 'energPol'){
+				price = this._game.add.text(element.x - 40, element.y + 20, element.cout, {font: "23px Arial", fill: "#ffffff"});
+				price.anchor.set(-2);
+			} else if(element.alpha && element.alpha != 1){
 				price = this._game.add.text(element.x, element.y, element.cout, {font: "23px Arial", fill: "#ffffff"});
 				price.anchor.set(-0.25);
 			}
