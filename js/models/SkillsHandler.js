@@ -10,6 +10,7 @@ define(['phaser', 'jquery'],
 			this.skillsContainerReadOnly = [];
 			this.skillsContainerReadOnly = this.getAllSkills();
 			if(skillsState) {
+				this.cleanPrice();
 				this.addButton(this._skillsObject);
 			}
 		};
@@ -54,13 +55,11 @@ define(['phaser', 'jquery'],
 			this._price.push(price);
 		};
 
-		SkillsHandler.prototype.cleanPrice = function(element){
+		SkillsHandler.prototype.cleanPrice = function(){
 			for(let element of this._price) {
-				console.log(element);
 				if(element !== undefined) {
 					element.destroy();
-					console.log('cleanPrice');
-				}	
+				}
 			}
 		};
 
@@ -68,6 +67,7 @@ define(['phaser', 'jquery'],
 		SkillsHandler.prototype.addButton = function(skillsObject){
 			for(let child of skillsObject) {
 				if(child.hasOwnProperty('category')) {
+					this.price(child);
 					this.skillsContainer[child.name] = this._game.add.button(child.x, child.y, child.category);
 					this.skillsContainer[child.name].alpha = child.alpha;
 					this.skillsContainer[child.name].input.pixelPerfectOver = true;
@@ -75,8 +75,6 @@ define(['phaser', 'jquery'],
 					this.skillsContainer[child.name].events.onInputDown.add(this.discovery.bind(this, child));
 					this.skillsContainer[child.name].events.onInputOver.add(this.overName.bind(this, child));
 					this.skillsContainer[child.name].events.onInputOut.add(this.cleanText.bind(this, child));
-					this.cleanPrice(child);
-					this.price(child);
 				}
 				if(child.hasOwnProperty('children')) {
 					this.addButton(child.children);
@@ -123,6 +121,7 @@ define(['phaser', 'jquery'],
 
 			search(this._skillsObject);
 			this.clearSkillsContainer(); // Destructinon de l'arbre de compétences
+			this.cleanPrice();
 			this.addButton(this._skillsObject); // Reconstruction de l'arbre
 
 			this._text.destroy();
