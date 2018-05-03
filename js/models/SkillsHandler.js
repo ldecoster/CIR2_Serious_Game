@@ -5,6 +5,7 @@ define(['phaser', 'jquery'],
 			this._gameObject = gameObject;
 			this._skillsObject = skillsObject;
 			this._text = undefined;
+			this._price = [];
 			this.skillsContainer = [];
 			this.skillsContainerReadOnly = [];
 			this.skillsContainerReadOnly = this.getAllSkills();
@@ -42,19 +43,24 @@ define(['phaser', 'jquery'],
 
 		//Affiche le prix des compétences non débloquées 
 		SkillsHandler.prototype.price = function(element) {
-			if(element.name == 'transEnerg'){
-				this._price = this._game.add.text(element.x, element.y - 40, element.cout, {font: "23px Arial", fill: "#ffffff"});
-				this._price.anchor.set(-5);
+			var price;
+			if(element.name === 'transEnerg'){
+				price = this._game.add.text(element.x, element.y - 40, element.cout, {font: "23px Arial", fill: "#ffffff"});
+				price.anchor.set(-5);
 			} else if(element.alpha){
-				this._price = this._game.add.text(element.x, element.y, element.cout, {font: "23px Arial", fill: "#ffffff"});
-				this._price.anchor.set(-0.25);
+				price = this._game.add.text(element.x, element.y, element.cout, {font: "23px Arial", fill: "#ffffff"});
+				price.anchor.set(-0.25);
 			}
-		}
+			this._price.push(price);
+		};
 
 		SkillsHandler.prototype.cleanPrice = function(element){
-			if(this._price !== undefined) {
-				this._price.destroy();
-				console.log('cleanPrice')
+			for(let element of this._price) {
+				console.log(element);
+				if(element !== undefined) {
+					element.destroy();
+					console.log('cleanPrice');
+				}	
 			}
 		};
 
@@ -69,12 +75,12 @@ define(['phaser', 'jquery'],
 					this.skillsContainer[child.name].events.onInputDown.add(this.discovery.bind(this, child));
 					this.skillsContainer[child.name].events.onInputOver.add(this.overName.bind(this, child));
 					this.skillsContainer[child.name].events.onInputOut.add(this.cleanText.bind(this, child));
+					this.cleanPrice(child);
+					this.price(child);
 				}
 				if(child.hasOwnProperty('children')) {
 					this.addButton(child.children);
 				}
-				this.cleanPrice(child);
-				this.price(child);
 			}
 		};
 
