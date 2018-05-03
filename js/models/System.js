@@ -29,7 +29,7 @@ define(['phaser'],
 
 			this._timer.start();
 
-			this._timer_text = this._game.add.text(16, 16, 'Time : ' + smoothDisplay(Math.floor(seconds / 60)) + ':' + smoothDisplay(seconds % 60), {
+			this._timer_text = this._game.add.text(16, 16, 'Temps : ' + smoothDisplay(Math.floor(seconds / 60)) + ':' + smoothDisplay(seconds % 60), {
 				fontSize: '32px',
 				fill: '#555'
 			});
@@ -53,9 +53,9 @@ define(['phaser'],
 
 				seconds = this._time % 60;
 				minutes = Math.floor(this._time / 60);
-				this._timer_text.text = 'Time : ' + smoothDisplay(minutes) + ':' + smoothDisplay(seconds);
+				this._timer_text.text = 'Temps : ' + smoothDisplay(minutes) + ':' + smoothDisplay(seconds);
 			} else {
-				this._timer_text.text = 'Time : 00:00';
+				this._timer_text.text = 'Temps : 00:00';
 			}
 		};
 
