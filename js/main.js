@@ -18,8 +18,8 @@ require.config({
 	}
 });
 
-require(['phaser', 'js/states/boot', 'js/states/load', 'js/states/menu', 'js/states/play', 'js/states/skills', 'js/states/win', 'js/states/defeat'],
-	function (Phaser, boot, load, menu, play, skills, win, defeat) {
+require(['phaser', 'js/states/boot', 'js/states/load', 'js/states/menu', 'js/states/play', 'js/states/skills', 'js/states/missions', 'js/states/stats', 'js/states/win', 'js/states/defeat'],
+	function (Phaser, boot, load, menu, play, skills, missions, stats, win, defeat) {
 		var jeu = function (htmlFrame) {
 			var game = new Phaser.Game(1350, 750, Phaser.AUTO, htmlFrame, {});
 
@@ -28,6 +28,8 @@ require(['phaser', 'js/states/boot', 'js/states/load', 'js/states/menu', 'js/sta
 			game.state.add('Menu', menu);
 			game.state.add('Play', play);
 			game.state.add('Skills', skills);
+			game.state.add('Missions', missions);
+			game.state.add('Stats', stats);
 			game.state.add('Win', win);
 			game.state.add('Defeat', defeat);
 

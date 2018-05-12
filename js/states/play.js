@@ -12,6 +12,13 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 			},
 
 			create: function () {
+				// Fonction permettant le changement de states sans bouleverser le jeu
+				var changeState = (stateName) => {
+					clearInterval(this.counter);
+					this.gameObject.barParam.PV = this.pollutionBar.getPV();
+					this.game.state.start(stateName, true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
+				};
+				
 				/* Niveau facile mis par défaut */
 				this.pollutionGoal = this.gameObject.levels[0].winPercentage;
 
@@ -27,20 +34,15 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.buttonNotification.alpha = 0;
 
 				this.buttonSkills = this.game.add.button(1006, 653, 'buttonSkills', function() {
-					clearInterval(this.counter);
-					this.gameObject.barParam.PV = this.pollutionBar.getPV();
-					this.game.state.start('Skills', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
+					changeState('Skills');
 				}, this, 0, 1);
 
-				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {});
+				this.buttonMissions = this.game.add.button(579, 620, 'buttonMissions', function() {
+					changeState('Missions');
+				});
 
 				this.buttonStats = this.game.add.button(10, 653, 'buttonStats', function() {
-					colorswap(this.mapContainer.frZo1, this.mapContainer.frZo1P, this.mapContainer.frZo1S, false);
-					colorswap(this.mapContainer.frZo2, this.mapContainer.frZo2P, this.mapContainer.frZo2S, false);
-					colorswap(this.mapContainer.frZo3, this.mapContainer.frZo3P, this.mapContainer.frZo3S, false);
-					colorswap(this.mapContainer.frZo4, this.mapContainer.frZo4P, this.mapContainer.frZo4S, false);
-					colorswap(this.mapContainer.frZo5, this.mapContainer.frZo5P, this.mapContainer.frZo5S, false);
-					colorswap(this.mapContainer.frZo6, this.mapContainer.frZo6P, this.mapContainer.frZo6S, false);
+					changeState('Stats');
 				}, this, 0, 1);
 
 
@@ -60,7 +62,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.pollutionBar.printPercentage();
 
 				this.skillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject);
-			
+
 				// Augmente le taux de pollution si certaines compétences ne sont pas débloquées
 				var handlePollution = () => {
 					if(this.skillsHandler.searchSkill('nucleaire').debloque === 0) {
