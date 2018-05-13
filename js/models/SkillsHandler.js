@@ -76,7 +76,7 @@ define(['phaser', 'jquery'],
 					this.skillsContainer[child.name] = this._game.add.button(child.x, child.y, child.category);
 					if(child.debloque === 0) {
 						this.price(child);
-					}else if(child.profondeur != 1) {
+					}else if(child.profondeur !== 1) {
 						this.star = this._game.add.sprite(child.x, child.y, 'star');
 					}
 					this.skillsContainer[child.name].alpha = child.alpha;
