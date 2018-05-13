@@ -19,11 +19,9 @@ define([],
 				/* Ressources de l'écran principal */
 
 				// Images de la carte
-				for(let i = 1; i <= 6; i++) {
-					this.game.load.image('frZo' + i, 'assets/img/interface/france_zone' + i + '.png');
-					this.game.load.image('frZo' + i + 'P', 'assets/img/interface/france_zone' + i + '_pollute.png');
-					this.game.load.image('frZo' + i + 'S', 'assets/img/interface/france_zone'+ i + '_safe.png');
-				}
+				this.game.load.image('fr', 'assets/img/interface/france.png');
+				this.game.load.image('frP', 'assets/img/interface/france_pollute.png');
+				this.game.load.image('frS', 'assets/img/interface/france_safe.png');
 
 				// Images de la barre de notifications et indication de notifications
 				this.game.load.image('buttonBackground', 'assets/img/interface/button_background.png');
