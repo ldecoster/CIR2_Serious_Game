@@ -107,14 +107,14 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
 				if(this.pollutionBar.PV === 0) {
-					this.game.state.start('Win');
+					this.game.state.start('Win', true, false, this.pollutionBar.PV);
 				}
 
 				// À la fin du temps réglementaire
 				if(this.system.getClock() === 0) {
 					// Si le taux de pollution atteint l'objectif, on déclenche l'état de victoire sinon celui de défaite
 					if(this.pollutionBar.PV <= this.pollutionGoal) {
-						this.game.state.start('Win');
+						this.game.state.start('Win', true, false, this.pollutionBar.PV);
 					} else {
 						this.game.state.start('Defeat');
 					}

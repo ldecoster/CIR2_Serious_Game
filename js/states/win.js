@@ -5,6 +5,10 @@ define(['js/models/System.js', 'text!assets/json/config.json', 'text!assets/json
 		};
 
 		win.prototype = {
+			init: function(pollutionRate) {
+				console.log(pollutionRate);
+			},
+
 			create: function() {
 				this.system = new System(this.game);
 				this.system.createFullScreen();
