@@ -61,16 +61,22 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				this.pollutionBar = new BarController(this.game, this.gameObject.barParam);
 				this.pollutionBar.printPercentage();
 
+				// Changement couleur carte
+				colorswap(this.mapContainer.fr, this.mapContainer.frP, this.mapContainer.frS, this.pollutionBar.getPV());
+
 				this.skillsHandler = new SkillsHandler(this.game, this.gameObject, this.skillsObject);
 
 				// Augmente le taux de pollution si certaines compétences ne sont pas débloquées
 				var handlePollution = () => {
 					if(this.skillsHandler.searchSkill('nucleaire').debloque === 0) {
 						this.pollutionBar.addPV(0.5);
+						colorswap(this.mapContainer.fr, this.mapContainer.frP, this.mapContainer.frS, this.pollutionBar.getPV());
+
 					} else {
 						let nuc = this.skillsHandler.searchSkill('entretien').debloque + this.skillsHandler.searchSkill('destruction').debloque + this.skillsHandler.searchSkill('recyclDechet').debloque;
 						if(nuc === 0) {
-							this.pollutionBar.addPV(0.7);	
+							this.pollutionBar.addPV(0.7);
+							colorswap(this.mapContainer.fr, this.mapContainer.frP, this.mapContainer.frS, this.pollutionBar.getPV());
 						}
 					}
 				};
@@ -110,7 +116,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 					if(this.pollutionBar.PV <= this.pollutionGoal) {
 						this.game.state.start('Win');
 					} else {
-					this.game.state.start('Defeat');
+						this.game.state.start('Defeat');
 					}
 				}
 			}
