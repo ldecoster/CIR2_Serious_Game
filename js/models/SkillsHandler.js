@@ -71,6 +71,7 @@ define(['phaser', 'jquery'],
 
 		// Ajout récursif des boutons issus du JSON
 		SkillsHandler.prototype.addButton = function(skillsObject){
+			//this.cleanPrice();
 			for(let child of skillsObject) {
 				if(child.hasOwnProperty('category')) {
 					this.price(child);
@@ -85,6 +86,7 @@ define(['phaser', 'jquery'],
 				if(child.hasOwnProperty('children')) {
 					this.addButton(child.children);
 				}
+				this.price(child);
 			}
 		};
 
