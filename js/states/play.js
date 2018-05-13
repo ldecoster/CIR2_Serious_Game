@@ -94,9 +94,14 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 				this.pointDisplay.text = 'Points : ' + this.gameObject.point;
 
-				// Si le le taux de pollution atteint 100, on déclenche l'état de défaite
-				if((this.pollutionBar.PV === this.pollutionBar.pvmax)) {
+				// Si le taux de pollution atteint 100, on déclenche l'état de défaite
+				if(this.pollutionBar.PV === this.pollutionBar.pvmax) {
 					this.game.state.start('Defeat');
+				}
+
+				// Si le taux de pollution atteint 0, on déclenche l'état de victoire
+				if(this.pollutionBar.PV === 0) {
+					this.game.state.start('Win');
 				}
 
 				// À la fin du temps réglementaire
