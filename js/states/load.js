@@ -57,6 +57,10 @@ define([],
 				this.game.load.image('backgroundWin','assets/img/interface/victory_background.png');
 				this.game.load.spritesheet('buttonMenu', 'assets/img/interface/button_end_menu.png', 220, 60, 2);
 				this.game.load.spritesheet('buttonReplay', 'assets/img/interface/button_end_replay.png', 220, 60, 2);
+
+				//Missions
+				this.game.load.image('policier','assets/img/others/policier.png');
+				this.game.load.image('bulle','assets/img/others/bulle.png');
 			},
 
 			create: function() {

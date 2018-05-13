@@ -21,7 +21,7 @@ define(['phaser', 'js/models/System.js', 'js/models/SkillsHandler'],
 				// Texte affichant les Points
 				this.pointDisplay = this.game.add.text(1145, 16, 'Points : ' + this.gameObject.point, {
 					fontSize: '32px',
-					fill: '#555'
+					fill: '#ffffff'
 				});
 
 

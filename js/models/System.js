@@ -31,7 +31,7 @@ define(['phaser'],
 
 			this._timer_text = this._game.add.text(16, 16, 'Temps : ' + smoothDisplay(Math.floor(seconds / 60)) + ':' + smoothDisplay(seconds % 60), {
 				fontSize: '32px',
-				fill: '#555'
+				fill: '#ffffff'
 			});
 
 			this._timer_text.fixedToCamera = true;

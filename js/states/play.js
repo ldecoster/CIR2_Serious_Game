@@ -49,7 +49,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				// Texte affichant les Points
 				this.pointDisplay = this.game.add.text(1145, 16, 'Points : ' + this.gameObject.point, {
 					fontSize: '32px',
-					fill: '#555'
+					fill: '#ffffff'
 				});
 
 				// Création du chronomètre
