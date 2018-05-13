@@ -1,11 +1,11 @@
 [
 	{
 		"name": "frZo1",
-		"alpha": 0.4
+		"alpha": 1
 	},
 	{
 		"name": "frZo1P",
-		"alpha": 0.6
+		"alpha": 0
 	},
 	{
 		"name": "frZo1S",
@@ -13,11 +13,11 @@
 	},
 	{
 		"name": "frZo2",
-		"alpha": 0.4
+		"alpha": 1
 	},
 	{
 		"name": "frZo2P",
-		"alpha": 0.6
+		"alpha": 0
 	},
 	{
 		"name": "frZo2S",
@@ -25,11 +25,11 @@
 	},
 	{
 		"name": "frZo3",
-		"alpha": 0.4
+		"alpha": 1
 	},
 	{
 		"name": "frZo3P",
-		"alpha": 0.6
+		"alpha": 0
 	},
 	{
 		"name": "frZo3S",
@@ -37,11 +37,11 @@
 	},
 	{
 		"name": "frZo4",
-		"alpha": 0.4
+		"alpha": 1
 	},
 	{
 		"name": "frZo4P",
-		"alpha": 0.6
+		"alpha": 0
 	},
 	{
 		"name": "frZo4S",
@@ -49,11 +49,11 @@
 	},
 	{
 		"name": "frZo5",
-		"alpha": 0.4
+		"alpha": 1
 	},
 	{
 		"name": "frZo5P",
-		"alpha": 0.6
+		"alpha": 0
 	},
 	{
 		"name": "frZo5S",
@@ -61,11 +61,11 @@
 	},
 	{
 		"name": "frZo6",
-		"alpha": 0.4
+		"alpha": 1
 	},
 	{
 		"name": "frZo6P",
-		"alpha": 0.6
+		"alpha": 0
 	},
 	{
 		"name": "frZo6S",
