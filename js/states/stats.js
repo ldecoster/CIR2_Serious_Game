@@ -1,5 +1,5 @@
-define(['phaser'],
-	function (Phaser) {
+define(['phaser', 'js/models/System.js'],
+	function (Phaser, System) {
 		var stats = function () {
 		};
 
@@ -15,6 +15,9 @@ define(['phaser'],
 				this.buttonReturn = this.game.add.button(10, 653, 'buttonReturn', () => {
 					this.game.state.start('Play', true, false, JSON.stringify(this.gameObject), JSON.stringify(this.mapsObject), JSON.stringify(this.skillsObject));
 				}, this, 1, 0);
+
+				this.system = new System(this.game);
+				this.system.createFullScreen();
 			},
 
 			update: function () {

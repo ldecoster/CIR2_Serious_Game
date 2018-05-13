@@ -1,5 +1,5 @@
-define(['phaser'],
-	function (Phaser) {
+define(['phaser', 'js/models/System.js'],
+	function (Phaser, System) {
 		var missions = function () {
 		};
 
@@ -24,6 +24,8 @@ define(['phaser'],
 									  this.game.add.text(270, 160, '° Débloquer toutes les compétences orange', {fontSize: '25px', fill: '#000000'})+
 									  this.game.add.text(270, 190, '° Débloquer toutes les compétences', {fontSize: '25px', fill: '#000000'});
 
+				this.system = new System(this.game);
+				this.system.createFullScreen();
 			},
 
 			update: function () {
