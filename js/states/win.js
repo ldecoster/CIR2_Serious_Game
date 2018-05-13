@@ -6,7 +6,7 @@ define(['js/models/System.js', 'text!assets/json/config.json', 'text!assets/json
 
 		win.prototype = {
 			init: function(pollutionRate) {
-				this.pollutionRate = pollutionRate;
+				this.pollutionRate = Math.trunc(pollutionRate);
 				console.log(pollutionRate);
 			},
 
