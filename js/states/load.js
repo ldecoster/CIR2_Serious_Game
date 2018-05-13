@@ -62,6 +62,9 @@ define([],
 				/* Missions */
 				this.game.load.image('policier','assets/img/others/policier.png');
 				this.game.load.image('bulle','assets/img/others/bulle.png');
+
+				/* Statistiques */
+				this.game.load.image('board','assets/img/others/stats_board.png');
 			},
 
 			create: function() {
