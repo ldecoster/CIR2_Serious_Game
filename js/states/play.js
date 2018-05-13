@@ -77,12 +77,13 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 
 				// Incrémentation automatique des points et du taux de pollution
 				this.counter = setInterval(() => {
-					if(this.gameObject.tempsPoint === 10) {
+					// Toutes les 10sec on regarde pour modifier/augmenter la pollution
+					if(this.gameObject.tempsPoint >= 10 && (this.gameObject.tempsPoint%10) === 0) {
 						handlePollution();
-					} else if(this.gameObject.tempsPoint === 20) {
-						handlePollution();
-						this.gameObject.point += 5;
-						this.gameObject.tempsPoint = 0;
+					}
+					// Toutes les 3sec on gagne 1 point
+					if(this.gameObject.tempsPoint >= 3 && (this.gameObject.tempsPoint%3) === 0) {
+						this.gameObject.point += 1;
 					}
 					this.gameObject.tempsPoint++;
 				}, 1000);
@@ -99,7 +100,7 @@ define(['phaser', 'js/models/Bar.js', 'js/models/System.js', 'js/models/color.js
 				}
 
 				// Si le taux de pollution atteint l'objectif, on déclenche l'état de victoire
-				if(this.pollutionBar.PV === this.pollutionGoal) {
+				if(this.pollutionBar.PV <= this.pollutionGoal) {
 					this.game.state.start('Win');
 				}
 			}
