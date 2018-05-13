@@ -19,7 +19,7 @@ define(['phaser', 'js/models/System.js'],
 				this.board = this.game.add.sprite(0, 40, 'board');
 
 				this.statsDisplay = this.game.add.text(300, 100, '- La partie se finit au bout de', {fontSize: '25px', fill: '#ffffff'})+
-									this.game.add.text(650, 100, '5 minutes', {fontSize: '25px', fill: '#ff0000'})+
+									this.game.add.text(650, 100, '4 minutes', {fontSize: '25px', fill: '#ff0000'})+
 									this.game.add.text(300, 130, '- Vous gagnez 1 point de compétence toutes les', {fontSize: '25px', fill: '#ffffff'})+
 									this.game.add.text(875, 130, '3 secondes', {fontSize: '25px', fill: '#ff0000'})+
 									this.game.add.text(300, 160, '- Ils servent à acheter des améliorations dans', {fontSize: '25px', fill: '#ffffff'})+
@@ -32,7 +32,7 @@ define(['phaser', 'js/models/System.js'],
 									this.game.add.text(300, 280, '- Des points bonus sont gagnables grâce aux', {fontSize: '25px', fill: '#ffffff'})+
 									this.game.add.text(850, 280, '\'Missions\'', {fontSize: '25px', fill: '#0055ff'})+
 									this.game.add.text(300, 340, 'Attention : Il est impossible de débloquer toutes les compétences.', {fontSize: '25px', fill: '#ffffff'})+
-									this.game.add.text(400, 370, 'Des choix et des comrpomis sont donc à faire.', {fontSize: '25px', fill: '#ffffff'});
+									this.game.add.text(400, 370, 'Des choix et des compromis sont donc à faire.', {fontSize: '25px', fill: '#ffffff'});
 
 
 				this.system = new System(this.game);

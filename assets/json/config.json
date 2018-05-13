@@ -1,7 +1,7 @@
 {
 	"point": 10,
 	"tempsPoint": 0,
-	"remainingTime": 300,
+	"remainingTime": 240,
 	"barParam":{
 		"name": "pollution",
 		"speedDecrease": 100,
