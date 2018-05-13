@@ -30,7 +30,9 @@ define(['phaser', 'js/models/System.js'],
 									this.game.add.text(580, 220, 'taux de pollution', {fontSize: '25px', fill: '#ff00ff'})+
 									this.game.add.text(300, 250, '- S\'il atteint 100%, le jeu se finit', {fontSize: '25px', fill: '#ffffff'})+
 									this.game.add.text(300, 280, '- Des points bonus sont gagnables grâce aux', {fontSize: '25px', fill: '#ffffff'})+
-									this.game.add.text(850, 280, '\'Missions\'', {fontSize: '25px', fill: '#0055ff'});
+									this.game.add.text(850, 280, '\'Missions\'', {fontSize: '25px', fill: '#0055ff'})+
+									this.game.add.text(300, 340, 'Attention : Il est impossible de débloquer toutes les compétences', {fontSize: '25px', fill: '#ffffff'})+
+									this.game.add.text(400, 370, 'des choix et des comrpomis sont donc à faire.', {fontSize: '25px', fill: '#ffffff'});
 
 
 				this.system = new System(this.game);
