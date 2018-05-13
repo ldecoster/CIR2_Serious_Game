@@ -26,9 +26,11 @@ define(['phaser', 'js/models/System.js'],
 									this.game.add.text(850, 160, '\'Compétences\'', {fontSize: '25px', fill: '#0055ff'})+
 									this.game.add.text(300, 190, '- Les améliorations aident à', {fontSize: '25px', fill: '#ffffff'})+
 									this.game.add.text(640, 190, 'la transition énergétique', {fontSize: '25px', fill: '#00ff00'})+
-									this.game.add.text(300, 220, '- Des points bonus sont gagnables grâce aux', {fontSize: '25px', fill: '#ffffff'})+
-									this.game.add.text(850, 220, '\'Missions\'', {fontSize: '25px', fill: '#0055ff'})+
-									;
+									this.game.add.text(300, 220, '- Elle sert à diminuer le', {fontSize: '25px', fill: '#ffffff'})+
+									this.game.add.text(580, 220, 'taux de pollution', {fontSize: '25px', fill: '#ff00ff'})+
+									this.game.add.text(300, 250, '- S\'il atteint 100%, le jeu se finit', {fontSize: '25px', fill: '#ffffff'})+
+									this.game.add.text(300, 280, '- Des points bonus sont gagnables grâce aux', {fontSize: '25px', fill: '#ffffff'})+
+									this.game.add.text(850, 280, '\'Missions\'', {fontSize: '25px', fill: '#0055ff'});
 
 
 				this.system = new System(this.game);
